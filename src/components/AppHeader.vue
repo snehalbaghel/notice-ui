@@ -2,18 +2,21 @@
 	<v-app id="toolbar">
 		<v-app-bar
 			app
+			light
 			clipped-left
-			color="green lighten-1">
+			color="teal">
 			<v-app-bar-nav-icon @click="drawer = !drawer" />
 			<span class="title ml-3 mr-5">E&nbsp;<span class="font-weight-light">Notice</span></span>
 			<v-text-field 
 				solo-inverted
 				flat
+				light
 				hide-details
 				label="Search"
 				prepend-inner-icon="search"
 			/>
 			<div class="flex-grow-1"></div>
+			
 		</v-app-bar>
 		<v-navigation-drawer
 			v-model="drawer"
@@ -26,6 +29,10 @@
 				<!-- Calender and filters -->
 			</v-list>
 		</v-navigation-drawer>
+
+
+
+		<!--Page Contents -->
     <v-content>
     <v-container
         fluid
