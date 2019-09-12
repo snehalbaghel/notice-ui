@@ -21,22 +21,29 @@
 
 		<!--Page Contents -->
     <v-content>
-   
-  <v-stepper v-model="e6" vertical>
+   <v-card
+     class="mx-auto"
+    max-width="950"
+    outlined
+    align-center
+   >
+  <v-stepper v-model="e6" vertical align-center>
     <v-stepper-step :complete="e6 > 1" step="1" color="teal">
       Details
     </v-stepper-step>
 
     <v-stepper-content step="1">
-      <v-card color="white" class="mb-5" height="750px">
+      <v-card color="white" class="mb-5" height="750px" align-center>
           
           <v-form
     ref="form"
     v-model="valid"
     lazy-validation
+    align-center
   >
-  <v-col cols="12" sm="6" >
-     <v-text-field
+  <div align-content-center>
+  <v-col cols="12" >
+     <v-text-field align-center
       v-model="name"
       label="Title"
       required
@@ -44,7 +51,7 @@
     ></v-text-field>
   </v-col>
   <!--Date Picker-->
-    <v-col cols="12" sm="6" >
+    <v-col cols="12">
     <v-text-field
       v-model="name"
       label="Name"
@@ -53,7 +60,7 @@
     ></v-text-field>
     </v-col>
     <v-row>
-    <v-col cols="12" sm="6" >
+    <v-col cols="12">
       <v-menu
         ref="menu"
         v-model="menu"
@@ -85,7 +92,7 @@
     </v-row>
      <!--Time selector-->
     <v-row>
-    <v-col cols="12" sm="6" >
+    <v-col cols="12">
       <v-menu
         ref="menu"
         color="teal"
@@ -121,13 +128,13 @@
     <div class="flex-grow-1"></div>
     
     </v-row>
-     <v-col cols="12" sm="6" >
+     <v-col cols="12">
     <v-textarea
     color="teal"
       label="Description"
     ></v-textarea>
      </v-col>
-     <v-col cols="12" sm="6" >
+     <v-col cols="12">
       <v-text-field
       v-model="name"
       label="Location"
@@ -135,7 +142,7 @@
       color="teal"
     ></v-text-field>
      </v-col>
-     <v-col cols="12" sm="6" >
+     <v-col cols="12">
      <v-text-field
       v-model="name"
       label="Contact"
@@ -143,6 +150,7 @@
       color="teal"
     ></v-text-field>
      </v-col>
+     </div>
   </v-form>
 
       </v-card>
@@ -153,7 +161,7 @@
 
     <v-stepper-content step="2">
       <v-card class="mb-5" height="300px">
-    <v-col cols="12" sm="6" >
+    <v-col cols="12">
   <v-combobox
     color="teal"
     v-model="chips"
@@ -180,7 +188,7 @@
     </template>
   </v-combobox>
     </v-col>
-          <v-col cols="12" sm="6" >
+          <v-col cols="12">
      <v-text-field
       v-model="name"
       label="Google Link"
@@ -188,7 +196,7 @@
       color="teal"
     ></v-text-field>
      </v-col>
-     <v-col cols="12" sm="6" >
+     <v-col cols="12">
      <v-file-input label="Poster" color="teal"></v-file-input>
      </v-col>
 
@@ -203,13 +211,25 @@
       <v-card  class="mb-5" height="40px">
           <p>Do you want to submit?</p>
       </v-card>
-      <v-btn flat color="teal">Yes</v-btn>
-
+        <v-btn color="teal" @click="snackbar = true">Yes</v-btn>
+    <v-snackbar
+      v-model="snackbar"
+    >
+      {{ text }}
+      <v-btn
+        color="teal"
+        text
+        @click="snackbar = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
       <v-btn flat @click="e6 = 1">Go Back</v-btn>
       
     </v-stepper-content>
 
   </v-stepper>
+  </v-card>
     </v-content>
 	</v-app>
 </template>
@@ -222,6 +242,8 @@
 		//private drawer: boolean = true;
         data () {
       return {
+          snackbar: false,
+          text: 'Your event has been added for review',
           time: null,
         menu2: false,
         modal2: false,
