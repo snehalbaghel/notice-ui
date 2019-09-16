@@ -15,6 +15,7 @@
 				label="Search"
 				prepend-inner-icon="search"
 			/>
+        <v-btn class="butt" color="teal" dark text><font color="white">Upcoming</font></v-btn><v-divider vertical></v-divider>
 			<div class="flex-grow-1"></div>
 			
 		</v-app-bar>
@@ -43,7 +44,7 @@
 						v-model="tags" column multiple>
 						<v-chip filter outlined>Computer Science</v-chip>
 						<v-chip filter outlined>Law</v-chip>
-						<v-chip filter outlined>Psycology</v-chip>
+						<v-chip filter outlined>Psychology</v-chip>
 						<v-chip filter outlined>Business</v-chip>
 						<v-chip filter outlined>Math</v-chip>
 						<v-chip filter outlined>Chemistry</v-chip>
