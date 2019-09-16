@@ -15,7 +15,8 @@
 				label="Search"
 				prepend-inner-icon="search"
 			/>
-        <v-btn class="butt" color="teal" dark text><font color="white">Upcoming</font></v-btn><v-divider vertical></v-divider>
+			
+        <!--v-btn class="butt" color="teal" dark text><font color="white">Upcoming</font></v-btn><v-divider vertical></v-divider-->
 			<div class="flex-grow-1"></div>
 			
 		</v-app-bar>

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Admin />
+    <!--Admin /-->
     <!--Student /-->
     <!--Status /-->
     <!--AppHeader /-->
