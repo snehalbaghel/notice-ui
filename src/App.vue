@@ -3,7 +3,7 @@
     <!--Admin /-->
     <!--Student /-->
     <!--Status /-->
-    <!--AppHeader /-->
+    <AppHeader />
   </v-app>
 </template>
 

@@ -16,7 +16,7 @@
 				prepend-inner-icon="search"
 			/>
 			
-        <!--v-btn class="butt" color="teal" dark text><font color="white">Upcoming</font></v-btn><v-divider vertical></v-divider-->
+        <v-btn class="button" color="teal" dark text><font color="white">Upcoming</font></v-btn><v-divider vertical></v-divider>
 			<div class="flex-grow-1"></div>
 			
 		</v-app-bar>
@@ -71,17 +71,122 @@
 		<!--Page Contents -->
     <v-content>
     <v-container
-        fluid
-        class="grey lighten-4 fill-height"
-      >
+        fluid>
+	  
         <v-row
           justify="center"
-          align="center"
         >
           <v-col class="shrink">
-            <h1>Hello world</h1>
+            <v-carousel>
+    <v-carousel-item
+      v-for="(item,i) in items"
+      :key="i"
+      :src="item.src"
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    ></v-carousel-item>
+  </v-carousel>
           </v-col>
         </v-row>
+		<v-divider horizontal>
+		</v-divider>
+		<div
+		
+		  v-for="(item,i) in 5" :key="i">
+		
+		<v-row justify="center" v-if="i%2==0">
+			<v-col class="shrink">
+		<v-card
+		height="500"
+		width="1450"
+		class="card"
+		>
+		<v-row>
+			<v-col>
+				<v-card height="475" width="892" class="card">
+					<v-row>
+					<v-card-text>
+					<h3>Name</h3>
+        			<p>Description:  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        			<p>12-09-2019</p>
+        			<p>4:00PM</p>
+					</v-card-text>
+					</v-row>	
+						<v-btn class="button" rounded color="teal" dark ><font color="white">More</font></v-btn>
+				</v-card>
+			</v-col>
+			<v-col>
+				<v-card
+          		class="pa-2"
+          		outline
+          		height="475px" width="500px"
+          		tile
+        		>
+                	<v-img
+                  		src="https://images.pexels.com/photos/1089280/pexels-photo-1089280.jpeg?auto=compress&cs=tinysrgb&h=1750&w=1260"
+                  		aspect-ratio="1"
+                  		class="card"
+                  		max-width="475"
+                  		max-height="450"
+                  		align-center
+                	></v-img>
+      			</v-card>
+
+			</v-col>
+		</v-row>
+		</v-card>
+			</v-col>
+		</v-row>
+
+		<v-row justify="center" v-else>
+			<v-col class="shrink">
+		<v-card
+		height="500"
+		width="1450"
+		class="card"
+		>
+		<v-row>
+			<v-col>
+				<v-card
+          		class="pa-2"
+          		outline
+          		height="475px" width="500px"
+          		tile
+        		>
+                	<v-img
+                  		src="https://images.pexels.com/photos/1089280/pexels-photo-1089280.jpeg?auto=compress&cs=tinysrgb&h=1750&w=1260"
+                  		aspect-ratio="1"
+                  		class="card"
+                  		max-width="475"
+                  		max-height="450"
+                  		align-center
+                	></v-img>
+      			</v-card>
+
+
+			</v-col>
+			<v-col >
+				<v-card height="475" width="892" class="card">
+					<v-row>
+					<v-card-text>
+					<h3>Name</h3>
+        			<p>Description:  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        			<p>12-09-2019</p>
+        			<p>4:00PM</p>
+					</v-card-text>
+					</v-row>	
+						<v-btn class="button" rounded color="teal" dark ><font color="white">More</font></v-btn>
+				</v-card>
+			</v-col>
+		</v-row>
+		</v-card>
+			</v-col>
+		</v-row>
+
+
+
+
+		</div>
       </v-container>
     </v-content>
 	</v-app>
@@ -92,7 +197,26 @@
 
   @Component
   export default class HelloWorld extends Vue {
+	  private overlay: boolean=false;
     private drawer: boolean = true;
+	data () {
+      return {
+        items: [
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+          },
+        ],
+      }
+	}
   }
 </script>
 
@@ -104,5 +228,13 @@
 	color: rgba(0,0,0,.54);
 	height: 40px;
 	font-weight: bold;
+}
+.card
+{
+  margin: 0px 8px 0px 8px;
+}
+.button
+{
+  margin: 10px 8px;
 }
 </style>

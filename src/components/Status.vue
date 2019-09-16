@@ -109,7 +109,7 @@
 
 	@Component
 	export default class HelloWorld extends Vue {
-		private overlay: boolean=false
+		private overlay: boolean=false;
 	}
 </script>
 
