@@ -5,6 +5,13 @@
 			light
 			clipped-left
 			color="teal">
+      <router-link to="homepage">
+            <v-btn
+              class="button" dark v-on="on" text icon color="white"
+            >
+            <v-icon>mdi-home</v-icon>
+        </v-btn>
+      </router-link>
 			<span class="title ml-3 mr-5">E&nbsp;<span class="font-weight-light">Notice</span></span>
 			<v-text-field 
 				solo-inverted
@@ -14,7 +21,9 @@
 				label="Search"
 				prepend-inner-icon="search"
 			/>
+      <router-link to="admin">
         <v-btn class="butt" color="teal" dark text><font color="white">Requests</font></v-btn><v-divider vertical></v-divider>
+      </router-link>
         <v-btn class="butt" color="teal" dark text><font color="white">Upcoming</font></v-btn><v-divider vertical></v-divider>
 			<div class="flex-grow-1"></div>
 			
@@ -107,6 +116,8 @@
           height="550px" width="500px"
           tile
         >
+        <v-row>
+        <v-card-text>
         <h3>Name</h3>
         <p>Description:  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         <p>12-09-2019</p>
@@ -114,6 +125,8 @@
         <p>Birds Park</p>
         <p>9987456321</p>
         <p>G-Link</p>
+        </v-card-text>
+         </v-row>
       </v-card>
       </v-col>
       <v-card

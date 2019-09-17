@@ -1,6 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+import AppHeader from './components/AppHeader.vue';
+import Student from './components/Student.vue';
+import Admin from './components/Admin.vue';
+import Status from './components/Status.vue';
+
 
 Vue.use(Router);
 
@@ -10,6 +15,26 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
+    },
+    {
+      path: '/homepage',
+      name: 'homepage',
+      component: AppHeader,
+    },
+    {
+      path: '/student',
+      name: 'student',
+      component: Student,
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: Admin,
+    },
+    {
+      path: '/status',
+      name: 'status',
+      component: Status,
     },
     {
       path: '/about',

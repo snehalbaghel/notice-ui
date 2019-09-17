@@ -5,6 +5,13 @@
 			light
 			clipped-left
 			color="teal">
+      <router-link to="homepage">
+            <v-btn
+              class="button" dark v-on="on" text icon color="white"
+            >
+            <v-icon>mdi-home</v-icon>
+        </v-btn>
+      </router-link>
 			<span class="title ml-3 mr-5">E&nbsp;<span class="font-weight-light">Notice</span></span>
 			<v-text-field 
 				solo-inverted
@@ -14,8 +21,12 @@
 				label="Search"
 				prepend-inner-icon="search"
 			/>
+        <router-link to="student">
         <v-btn class="butt" color="teal" dark text><font color="white">Add</font></v-btn><v-divider vertical></v-divider>
+        </router-link>
+        <router-link to="status">
         <v-btn class="butt" color="teal" dark text><font color="white">Status</font></v-btn><v-divider vertical></v-divider>
+        </router-link>
         <v-btn class="butt" color="teal" dark text><font color="white">Upcoming</font></v-btn><v-divider vertical></v-divider>
         <v-btn class="butt" color="teal" dark text><font color="white">Bookmarks</font></v-btn><v-divider vertical></v-divider>
 			<div class="flex-grow-1"></div>
@@ -216,6 +227,7 @@
           <p>Do you want to submit?</p>
       </v-card>
         <v-btn color="teal" @click="snackbar = true">Yes</v-btn>
+    <router-link to="homepage">
     <v-snackbar
       v-model="snackbar"
     >
@@ -228,6 +240,7 @@
         Close
       </v-btn>
     </v-snackbar>
+    </router-link>
       <v-btn flat @click="e6 = 1">Go Back</v-btn>
       
     </v-stepper-content>

@@ -6,6 +6,14 @@
 			clipped-left
 			color="teal">
 			<v-app-bar-nav-icon @click="drawer = !drawer" />
+			
+            <router-link to="homepage">
+			<v-btn
+              class="button" dark v-on="on" text icon color="white"
+            >
+            <v-icon>mdi-home</v-icon>
+        </v-btn>
+			</router-link>
 			<span class="title ml-3 mr-5">E&nbsp;<span class="font-weight-light">Notice</span></span>
 			<v-text-field 
 				solo-inverted
@@ -84,8 +92,26 @@
       :src="item.src"
       reverse-transition="fade-transition"
       transition="fade-transition"
-    ></v-carousel-item>
+    >
+	<!--v-row class="card1">
+		<v-col><v-card height="600" width="400" class="card1"></v-card></v-col>
+		<v-col><v-card height="600" width="400" class="card1"></v-card></v-col>
+		<v-col><v-card height="600" width="400" class="card1"></v-card></v-col>
+	</v-row-->
+	</v-carousel-item>
   </v-carousel>
+
+  <!--v-carousel>
+    <v-carousel-item
+      v-for="(item,i) in items"
+      :key="i"
+      :src="item.src"
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    >
+
+	</v-carousel-item>
+  </v-carousel-->
           </v-col>
         </v-row>
 		<v-divider horizontal>
@@ -114,6 +140,7 @@
 					</v-row>	
 						<v-btn class="button" rounded color="teal" dark ><font color="white">More</font></v-btn>
 				</v-card>
+			
 			</v-col>
 			<v-col>
 				<v-card
@@ -232,6 +259,10 @@
 .card
 {
   margin: 0px 8px 0px 8px;
+}
+.card1
+{
+  margin: 20px 20px 20px 20px;
 }
 .button
 {

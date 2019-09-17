@@ -1,9 +1,10 @@
 <template>
   <v-app>
+    <router-view/>
     <!--Admin /-->
     <!--Student /-->
     <!--Status /-->
-    <AppHeader />
+    <!--AppHeader /-->
   </v-app>
 </template>
 
