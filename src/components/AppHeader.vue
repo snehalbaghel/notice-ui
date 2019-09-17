@@ -23,10 +23,14 @@
 				label="Search"
 				prepend-inner-icon="search"
 			/>
-			
-        <v-btn class="button" color="teal" dark text><font color="white">Upcoming</font></v-btn><v-divider vertical></v-divider>
 			<div class="flex-grow-1"></div>
-			
+        <v-btn class="button" color="teal" dark text><font color="white">Upcoming</font></v-btn><v-divider vertical></v-divider>
+			<v-btn
+              class="button" dark v-on="on" text icon color="white"
+              @click="drawer1 = !drawer1"
+            >
+            <v-icon large>mdi-account-circle</v-icon>
+        </v-btn>
 		</v-app-bar>
 		<v-navigation-drawer
 			v-model="drawer"
@@ -73,6 +77,48 @@
 			
 			</v-list>
 		</v-navigation-drawer>
+
+    <v-navigation-drawer
+    v-model="drawer1"
+    subheader
+      absolute
+      right
+      clipped
+      width="290"
+    >
+          <template>
+        <v-list-item two-line>
+          <v-list-item-avatar>
+          </v-list-item-avatar>
+
+          <v-list-item-content>
+            <v-list-item-title></v-list-item-title>
+            <v-list-item-subtitle></v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </template>
+
+
+      <v-list dense>
+        <v-list-item
+          v-for="item1 in items1"
+          :key="item1.title"
+          @click=""
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item1.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item1.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+
+
+    </v-navigation-drawer>
+  
 
 
 
@@ -225,7 +271,8 @@
   @Component
   export default class HelloWorld extends Vue {
 	  private overlay: boolean=false;
-    private drawer: boolean = true;
+		private drawer: boolean = false;
+		private drawer1: boolean = false;
 	data () {
       return {
         items: [
@@ -241,6 +288,9 @@
           {
             src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
           },
+		],
+		items1: [
+          { title: 'Sign Out', icon: 'mdi-account-off' },
         ],
       }
 	}

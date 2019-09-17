@@ -21,18 +21,65 @@
 				label="Search"
 				prepend-inner-icon="search"
 			/>
+      <div class="flex-grow-1"></div>
         <router-link to="student">
-        <v-btn class="butt" color="teal" dark text><font color="white">Add</font></v-btn><v-divider vertical></v-divider>
+        <v-divider vertical></v-divider><v-btn class="butt" color="teal" dark text><font color="white">Add</font></v-btn><v-divider vertical></v-divider>
         </router-link>
         <router-link to="status">
-        <v-btn class="butt" color="teal" dark text><font color="white">Status</font></v-btn><v-divider vertical></v-divider>
+        <v-divider vertical></v-divider><v-btn class="butt" color="teal" dark text><font color="white">Status</font></v-btn><v-divider vertical></v-divider>
         </router-link>
-        <v-btn class="butt" color="teal" dark text><font color="white">Upcoming</font></v-btn><v-divider vertical></v-divider>
+        <v-btn class="butt" color="teal" dark text><font color="white">Upcoming</font></v-btn>
         <v-btn class="butt" color="teal" dark text><font color="white">Bookmarks</font></v-btn><v-divider vertical></v-divider>
-			<div class="flex-grow-1"></div>
-			
+			<v-btn
+              class="button" dark v-on="on" text icon color="white"
+              @click="drawer = !drawer"
+            >
+            <v-icon large>mdi-account-circle</v-icon>
+        </v-btn>
 		</v-app-bar>
 		
+
+    <v-navigation-drawer
+    v-model="drawer"
+    subheader
+      absolute
+      right
+      clipped
+      width="290"
+    >
+          <template>
+        <v-list-item two-line>
+          <v-list-item-avatar>
+          </v-list-item-avatar>
+
+          <v-list-item-content>
+            <v-list-item-title></v-list-item-title>
+            <v-list-item-subtitle></v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </template>
+
+
+      <v-list dense>
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          @click=""
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+
+
+    </v-navigation-drawer>
+  
 
 		<!--Page Contents -->
     <v-content>
@@ -123,7 +170,16 @@
 
 	@Component
 	export default class HelloWorld extends Vue {
-		private overlay: boolean=false;
+    private overlay: boolean=false;
+    private drawer: boolean=false;
+    data() {
+      return{
+        items: [
+          { title: 'Sign Out', icon: 'mdi-account-off' },
+        ],
+
+      }
+    }
 	}
 </script>
 
