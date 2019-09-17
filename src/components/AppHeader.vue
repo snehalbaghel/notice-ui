@@ -78,6 +78,9 @@
 			</v-list>
 		</v-navigation-drawer>
 
+
+
+
     <v-navigation-drawer
     v-model="drawer1"
     subheader
@@ -97,17 +100,54 @@
           </v-list-item-content>
         </v-list-item>
       </template>
-		<!--v-list dense>
-			<v-list-item>
-				<v-list-item-content>
-					<v-row>
-						<v-col>
-				<v-text-field align-center v-model="name" label="Username" required color="teal"></v-text-field>
-						</v-col>
-					</v-row>
-				</v-list-item-content>
-			</v-list-item>
-		</v-list-->
+
+
+      <v-list dense>
+        <v-list-item
+          v-for="item1 in items1"
+          :key="item1.title"
+          @click=""
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item1.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item1.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+
+
+    </v-navigation-drawer>
+
+
+
+
+
+
+
+
+    <!--v-navigation-drawer
+    v-model="drawer1"
+    subheader
+      absolute
+      right
+      clipped
+      width="290"
+    >
+          <template>
+        <v-list-item two-line>
+          <v-list-item-avatar>
+          </v-list-item-avatar>
+
+          <v-list-item-content>
+            <v-list-item-title></v-list-item-title>
+            <v-list-item-subtitle></v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </template>
 		<v-list dense>
         <v-list-item>
           <v-list-item-content>
@@ -115,7 +155,7 @@
 			<v-text-field align-center
       			v-model="name"
       			label="Username"
-				  name="username"
+				  name='username'
       			required
       			color="teal"
     		></v-text-field>
@@ -132,23 +172,14 @@
           </v-list-item-content>
 		  </v-list-item>
 		  <v-list-item>
-			  <div v-if="username=='admin'">
-			  <router-link to="admin" >
-		  <v-btn color="teal" dark ><font color="white">Submit</font></v-btn>		  
-		  </router-link>
-			  </div>
-			  <div v-else>
-			  <router-link to="student" >
-		  <v-btn color="teal" dark ><font color="white">Submit</font></v-btn>		  
-		  </router-link>
-			  </div>
+		  <v-btn color="teal" dark ><font color="white">Submit</font></v-btn>
         </v-list-item>
       </v-list>
-    </v-navigation-drawer>
+    </v-navigation-drawer-->
 	
 		<!--Navigation drawer for logged in users -->
     <!--v-navigation-drawer
-    v-model="drawer"
+    v-model="drawer1"
     subheader
       absolute
       right
