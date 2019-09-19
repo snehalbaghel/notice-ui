@@ -102,22 +102,33 @@
       </template>
 
 
-      <v-list dense>
-        <v-list-item
-          v-for="item1 in items1"
-          :key="item1.title"
-          @click=""
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item1.icon }}</v-icon>
-          </v-list-item-icon>
-
+		<v-list dense>
+        <v-list-item>
           <v-list-item-content>
-            <v-list-item-title>{{ item1.title }}</v-list-item-title>
+            <v-list-item-title></v-list-item-title>
+			<v-text-field align-center
+      			v-model="name"
+      			label="Username"
+				  name='username'
+      			required
+      			color="teal"
+    		></v-text-field>
+			<v-text-field align-center
+      			v-model="password"
+            :append-icon="show1 ? 'visibility' : 'visibility_off'"
+            :rules="[rules.required, rules.min]"
+            :type="show1 ? 'text' : 'password'"
+            name="input-10-1"
+            label="Password"
+			color="teal"
+            @click:append="show1 = !show1"
+    		></v-text-field>
           </v-list-item-content>
+		  </v-list-item>
+		  <v-list-item>
+		  <v-btn color="teal" dark ><font color="white">Submit</font></v-btn>
         </v-list-item>
       </v-list>
-
 
 
     </v-navigation-drawer>
