@@ -104,13 +104,16 @@
       v-for="(item,i) in 4"
       :key="i"
     >
-      <v-expansion-panel-header>Event Name</v-expansion-panel-header>
+      <v-expansion-panel-header>ARTHAYUDH</v-expansion-panel-header>
       <v-expansion-panel-content>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        <p>20-09-2019</p>
+        <p>9:00AM</p>
+        <p>Main Auditorium (on 20 September) and Campus View (on 21 September), Main Campus, CHRIST (Deemed to be University)</p>
+        
       <br>
 	  <br>
     <div class="action-buttons">
-	    <v-btn class="butt" rounded color="teal" dark ><font color="white">Review</font></v-btn>
+	    <v-btn class="butt" rounded color="teal" dark  v-on:click="check=true"><font color="white">Review</font></v-btn>
 	    <v-btn class="butt" rounded color="green" dark><font color="white">Approve</font></v-btn>
       <v-btn class="butt" rounded color="red" dark><font color="white">Reject</font></v-btn>
     </div>
@@ -127,10 +130,11 @@
         <v-card
           class="pa-2"
           outlined
-          height="900px" width="1205px"
+          height="1050px" width="1205px"
           tile
+            v-if="check==true"
         >
-		<v-card cols="12" sm="6" class="mb-5" height="1000px" width="1000px" align-center> 
+		<v-card cols="12" sm="6" class="mb-5" height="1010px" width="1300px" align-center> 
           <p>DETAILS</p>
           <v-row no-gutters>
       <v-col
@@ -140,18 +144,20 @@
       <v-card
           class="pa-2"
           outline
-          height="550px" width="500px"
+          height="850px" width="800px"
           tile
         >
+        <!--src="https://images.pexels.com/photos/1089280/pexels-photo-1089280.jpeg?auto=compress&cs=tinysrgb&h=1750&w=1260"
+                  -->
                 <v-img
-                  src="https://images.pexels.com/photos/1089280/pexels-photo-1089280.jpeg?auto=compress&cs=tinysrgb&h=1750&w=1260"
+                  src="./poster.jpg"
                   aspect-ratio="1"
                   class="grey lighten-2"
-                  max-width="475"
-                  max-height="650"
+                  width="575"
+                  height="800"
                   align-center
                 ></v-img>
-                <h3>Event Title</h3>
+                <h3>ARTHAYUDH</h3>
       </v-card>
       </v-col>
       <v-col
@@ -161,16 +167,29 @@
       <v-card
           class="pa-2"
           outline
-          height="550px" width="500px"
+          height="850px" width="800px"
           tile
+          
         >
         <v-row>
         <v-card-text>
-        <h3>Name</h3>
-        <p>Description:  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>12-09-2019</p>
-        <p>4:00PM</p>
-        <p>Birds Park</p>
+        <h3>ARTHAYUDH</h3>
+        <p>The Department of Management Studies provides a plethora of opportunities to the students for honing their managerial skills and to channel their passion with their interpersonal goals, through the fervent Association of the Department, Christ University Management Association (CUMA).
+
+ 
+
+CUMA proudly presents its flagship event ‘ARTHAYUDH’, the Annual National Level Intercollegiate Post-Graduate Management Fest, conducted by the Department of Management Studies, CHRIST (Deemed to be University). The theme for ‘Arthayudh 2019’ is ‘Geniokratio' which will be organised on 20 and 21 September 2019.
+
+It is a rigorous and intense two days of festing for the students of various Colleges and Universities across the nation, with various rounds conducted on 20 and 21 of September 2019, which will then culminate into the finale to be held on 21September 2019. The finale rounds will definitely push the finalists to put up their best and win the coveted titles in various events of ARTHAYUDH 2019.    
+
+ 
+
+The theme of this year ‘Genokratio', provides the participants with the opportunity to develop their expertise in copious industries. In the current times, it has become prevalent that having a holistic understanding and vast knowledge in a variety of business sectors is a major factor that differentiates the extraordinary from the ordinary.
+
+We hereby extend a hearty welcome to each one of you to ARTHAYUDH  2019.</p>
+        <p>20-09-2019</p>
+        <p>9:00AM</p>
+        <p>Main Auditorium (on 20 September) and Campus View (on 21 September), Main Campus, CHRIST (Deemed to be University)</p>
         <p>9987456321</p>
         <p>G-Link</p>
         </v-card-text>
@@ -180,7 +199,7 @@
       <v-card
           class="pa-2"
           outline
-          height="200px" width="1000px"
+          height="200px" width="1300px"
           tile
       >
       <v-col cols="12" >
@@ -231,6 +250,7 @@
 	@Component
 	export default class HelloWorld extends Vue {
     private drawer: boolean = false;
+    private check: boolean=false;
     data() {
       return{
         items: [

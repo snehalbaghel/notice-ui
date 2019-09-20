@@ -384,6 +384,7 @@
 		private drawer: boolean = false;
 		private drawer1: boolean = false;
 		private show1: boolean=false;
+		private check: boolean=false;
 	data () {
       return {
         show1: false,
