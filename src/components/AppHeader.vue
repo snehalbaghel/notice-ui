@@ -38,7 +38,7 @@
 			clipped
 			subheader
 			width="290"
-			color="gray lighten-4">
+			color="white">
 			<v-list
 				dense
 				class="grey lighten-4 fill-height">
