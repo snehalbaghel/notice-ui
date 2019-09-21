@@ -132,14 +132,7 @@
 
 
     </v-navigation-drawer>
-
-
-
-
-
-
-
-
+	
     <!--v-navigation-drawer
     v-model="drawer1"
     subheader
@@ -242,13 +235,32 @@
         >
           <v-col class="shrink">
             <v-carousel>
-    <v-carousel-item
+    <!--v-carousel-item
       v-for="(item,i) in items"
       :key="i"
       :src="item.src"
       reverse-transition="fade-transition"
       transition="fade-transition"
+    -->
+	<v-carousel-item
+      v-for="(item,i) in items"
+      :key="i"
+      reverse-transition="fade-transition"
+      transition="fade-transition"
     >
+	<v-card
+	height="1800"
+	width="500">
+	<v-img
+		src="./poster.jpg"
+		aspect-ratio="1"
+        class="card"
+        max-height="1800"
+        max-width="500"
+		align-center
+        ></v-img>
+	</v-card>
+	
 	<!--v-row class="card1">
 		<v-col><v-card height="600" width="400" class="card1"></v-card></v-col>
 		<v-col><v-card height="600" width="400" class="card1"></v-card></v-col>
@@ -288,10 +300,11 @@
 				<v-card height="475" width="892" class="card">
 					<v-row>
 					<v-card-text>
-					<h3>Name</h3>
-        			<p>Description:  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        			<p>12-09-2019</p>
-        			<p>4:00PM</p>
+					<h3>ARTHAYUDH</h3>
+        			<p>20-09-2019</p>
+        			<p>9:00AM</p>
+        			<p>Main Auditorium (on 20 September) and Campus View (on 21 September), Main Campus, CHRIST (Deemed to be University)</p>
+
 					</v-card-text>
 					</v-row>	
 						<v-btn class="button" rounded color="teal" dark ><font color="white">More</font></v-btn>
@@ -306,8 +319,8 @@
           		tile
         		>
                 	<v-img
-                  		src="https://images.pexels.com/photos/1089280/pexels-photo-1089280.jpeg?auto=compress&cs=tinysrgb&h=1750&w=1260"
-                  		aspect-ratio="1"
+                  		src="./poster.jpg"
+						aspect-ratio="1"
                   		class="card"
                   		max-width="475"
                   		max-height="450"
@@ -337,8 +350,8 @@
           		tile
         		>
                 	<v-img
-                  		src="https://images.pexels.com/photos/1089280/pexels-photo-1089280.jpeg?auto=compress&cs=tinysrgb&h=1750&w=1260"
-                  		aspect-ratio="1"
+                  		src="./poster.jpg"
+						aspect-ratio="1"
                   		class="card"
                   		max-width="475"
                   		max-height="450"
@@ -352,10 +365,11 @@
 				<v-card height="475" width="892" class="card">
 					<v-row>
 					<v-card-text>
-					<h3>Name</h3>
-        			<p>Description:  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        			<p>12-09-2019</p>
-        			<p>4:00PM</p>
+					<h3>ARTHAYUDH</h3>
+        			<p>20-09-2019</p>
+        			<p>9:00AM</p>
+        			<p>Main Auditorium (on 20 September) and Campus View (on 21 September), Main Campus, CHRIST (Deemed to be University)</p>
+
 					</v-card-text>
 					</v-row>	
 						<v-btn class="button" rounded color="teal" dark ><font color="white">More</font></v-btn>
@@ -398,16 +412,16 @@
         },
         items: [
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+            src: "./poster.jpg",
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+            src: "./poster1.png",
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+            src: "./poster2.jpg",
           },
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+            src: "./poster3.jpg",
           },
 		],
 		items1: [
