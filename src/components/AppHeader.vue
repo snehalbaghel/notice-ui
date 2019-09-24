@@ -23,8 +23,7 @@
 				label="Search"
 				prepend-inner-icon="search"
 			/>
-			<div class="flex-grow-1"></div>
-        <v-btn class="button" color="teal" dark text><font color="white">Upcoming</font></v-btn><v-divider vertical></v-divider>
+			<div class="flex-grow-1"></div><v-divider vertical></v-divider>
 			<v-btn
               class="button" dark v-on="on" text icon color="white"
               @click="drawer1 = !drawer1"
@@ -53,6 +52,33 @@
 				</v-list-item>
 				<div class="filter-name">Department</div>
 				<v-list-item>
+  						<v-combobox
+  						  color="teal"
+  						  v-model="chips"
+  						  :items="itm"
+  						  chips
+  						  clearable
+  						  label="Departments"
+  						  multiple
+  						  prepend-icon="filter_list"
+  						  solo
+  						>
+   						 <template v-slot:selection="{ attrs, item, select, selected }">
+   						   <v-chip
+   						     color="teal"
+   						     v-bind="attrs"
+   						     :input-value="selected"
+   						     close
+   						     @click="select"
+   						     @click:close="remove(item)"
+   						   >
+   						     <font color="white"><strong>{{ item }}</strong>&nbsp;</font>
+
+   						   </v-chip>
+					   		</template>
+					  </v-combobox>
+					</v-list-item>
+				<v-list-item>
 					<v-chip-group
 						v-model="tags" column multiple>
 						<v-chip filter outlined>Computer Science</v-chip>
@@ -64,6 +90,33 @@
 					</v-chip-group>
 				</v-list-item>
 				<div class="filter-name">Tags</div>
+				<v-list-item>
+  						<v-combobox
+  						  color="teal"
+  						  v-model="chips"
+  						  :items="itm"
+  						  chips
+  						  clearable
+  						  label="Tags"
+  						  multiple
+  						  prepend-icon="filter_list"
+  						  solo
+  						>
+   						 <template v-slot:selection="{ attrs, item, select, selected }">
+   						   <v-chip
+   						     color="teal"
+   						     v-bind="attrs"
+   						     :input-value="selected"
+   						     close
+   						     @click="select"
+   						     @click:close="remove(item)"
+   						   >
+   						     <font color="white"><strong>{{ item }}</strong>&nbsp;</font>
+
+   						   </v-chip>
+					   		</template>
+					  </v-combobox>
+					</v-list-item>
 				<v-list-item>
 					<v-chip-group
 						v-model="tags" column multiple>

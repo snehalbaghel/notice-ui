@@ -24,8 +24,7 @@
       <div class="flex-grow-1"></div>
       <router-link to="admin">
         <v-btn class="butt" color="teal" dark text><font color="white">Requests</font></v-btn>
-      </router-link>
-        <v-btn class="butt" color="teal" dark text><font color="white">Upcoming</font></v-btn><v-divider vertical></v-divider>
+      </router-link><v-divider vertical></v-divider>
 			<v-btn
               class="button" dark v-on="on" text icon color="white"
               @click="drawer = !drawer"
