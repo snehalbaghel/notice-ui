@@ -100,7 +100,7 @@
 		<v-card cols="12" sm="6" class="mb-5" height="1000px" width="645px" clipped-left> 
 			<v-expansion-panels>
     <v-expansion-panel
-      v-for="(item,i) in 4"
+      v-for="(item,i) in 1"
       :key="i"
     >
       <v-expansion-panel-header>ARTHAYUDH</v-expansion-panel-header>

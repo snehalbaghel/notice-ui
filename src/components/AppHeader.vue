@@ -50,45 +50,6 @@
 						color="red"
 						is-inline/>
 				</v-list-item>
-				<div class="filter-name">Department</div>
-				<v-list-item>
-  						<v-combobox
-  						  color="teal"
-  						  v-model="chips"
-  						  :items="itm"
-  						  chips
-  						  clearable
-  						  label="Departments"
-  						  multiple
-  						  prepend-icon="filter_list"
-  						  solo
-  						>
-   						 <template v-slot:selection="{ attrs, item, select, selected }">
-   						   <v-chip
-   						     color="teal"
-   						     v-bind="attrs"
-   						     :input-value="selected"
-   						     close
-   						     @click="select"
-   						     @click:close="remove(item)"
-   						   >
-   						     <font color="white"><strong>{{ item }}</strong>&nbsp;</font>
-
-   						   </v-chip>
-					   		</template>
-					  </v-combobox>
-					</v-list-item>
-				<v-list-item>
-					<v-chip-group
-						v-model="tags" column multiple>
-						<v-chip filter outlined>Computer Science</v-chip>
-						<v-chip filter outlined>Law</v-chip>
-						<v-chip filter outlined>Psychology</v-chip>
-						<v-chip filter outlined>Business</v-chip>
-						<v-chip filter outlined>Math</v-chip>
-						<v-chip filter outlined>Chemistry</v-chip>
-					</v-chip-group>
-				</v-list-item>
 				<div class="filter-name">Tags</div>
 				<v-list-item>
   						<v-combobox
@@ -312,6 +273,7 @@
         max-width="500"
 		align-center
         ></v-img>
+		
 	</v-card>
 	
 	<!--v-row class="card1">
@@ -339,7 +301,7 @@
 		</v-divider>
 		<div
 		
-		  v-for="(item,i) in 5" :key="i">
+		  v-for="(item,i) in 2" :key="i">
 		
 		<v-row justify="center" v-if="i%2==0">
 			<v-col class="shrink">
@@ -357,10 +319,23 @@
         			<p>20-09-2019</p>
         			<p>9:00AM</p>
         			<p>Main Auditorium (on 20 September) and Campus View (on 21 September), Main Campus, CHRIST (Deemed to be University)</p>
+					<p>The Department of Management Studies provides a plethora of opportunities to the students for honing their managerial skills and to channel their passion with their interpersonal goals, through the fervent Association of the Department, Christ University Management Association (CUMA).
 
+ 
+
+CUMA proudly presents its flagship event ‘ARTHAYUDH’, the Annual National Level Intercollegiate Post-Graduate Management Fest, conducted by the Department of Management Studies, CHRIST (Deemed to be University). The theme for ‘Arthayudh 2019’ is ‘Geniokratio' which will be organised on 20 and 21 September 2019.
+
+It is a rigorous and intense two days of festing for the students of various Colleges and Universities across the nation, with various rounds conducted on 20 and 21 of September 2019, which will then culminate into the finale to be held on 21September 2019. The finale rounds will definitely push the finalists to put up their best and win the coveted titles in various events of ARTHAYUDH 2019.    
+
+ 
+
+The theme of this year ‘Genokratio', provides the participants with the opportunity to develop their expertise in copious industries. In the current times, it has become prevalent that having a holistic understanding and vast knowledge in a variety of business sectors is a major factor that differentiates the extraordinary from the ordinary.
+
+We hereby extend a hearty welcome to each one of you to ARTHAYUDH  2019.</p>
+        
 					</v-card-text>
 					</v-row>	
-						<v-btn class="button" rounded color="teal" dark ><font color="white">More</font></v-btn>
+						<v-btn class="button" rounded color="teal" dark ><font color="white">Bookmark</font></v-btn>
 				</v-card>
 			
 			</v-col>
@@ -403,7 +378,7 @@
           		tile
         		>
                 	<v-img
-                  		src="./poster.jpg"
+                  		src="./cap.jpg"
 						aspect-ratio="1"
                   		class="card"
                   		max-width="475"
@@ -418,14 +393,16 @@
 				<v-card height="475" width="892" class="card">
 					<v-row>
 					<v-card-text>
-					<h3>ARTHAYUDH</h3>
-        			<p>20-09-2019</p>
-        			<p>9:00AM</p>
-        			<p>Main Auditorium (on 20 September) and Campus View (on 21 September), Main Campus, CHRIST (Deemed to be University)</p>
+					<h3>GUIDANCE ON EXAM PREPARATION </h3>
+        			<p>26-09-2019</p>
+        			<p>4:15PM</p>
+        			<p>Sky View, Main Campus, CHRIST (Deemed to be University)</p>
+					<p>Exam anxiety is a battle that a lot of us go through, and it can be particularly nerve-wracking for first timers. Centre for Academic & Professional Support (CAPS) is pleased to bring you "GET EXAM-READY", exclusive training sessions on exam preparations. Tomorrow's session will be on- 
 
+Handling Stress and Examination Tips: Handling stressful environments is a necessary skill to attempt examinations. Gain few tips on writing examinations for optimal performance. </p>
 					</v-card-text>
 					</v-row>	
-						<v-btn class="button" rounded color="teal" dark ><font color="white">More</font></v-btn>
+						<v-btn class="button" rounded color="teal" dark ><font color="white">Bookmark</font></v-btn>
 				</v-card>
 			</v-col>
 		</v-row>

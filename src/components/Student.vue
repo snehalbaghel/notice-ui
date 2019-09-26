@@ -28,6 +28,8 @@
         <router-link to="status">
         <v-btn class="butt" color="teal" dark text><font color="white">Status</font></v-btn><v-divider vertical></v-divider>
         </router-link><v-divider vertical></v-divider>
+        <v-btn class="butt" color="teal" dark text><font color="white">Bookmarks</font></v-btn><v-divider vertical></v-divider>
+        
 			<v-btn
               class="button" dark v-on="on" text icon color="white"
               @click="drawer = !drawer"

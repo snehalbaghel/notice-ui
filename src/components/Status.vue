@@ -27,7 +27,11 @@
         </router-link>
         <router-link to="status">
         <v-divider vertical></v-divider><v-btn class="butt" color="teal" dark text><font color="white">Status</font></v-btn><v-divider vertical></v-divider>
-        </router-link><v-divider vertical></v-divider>
+        </router-link>
+        
+        <v-btn class="butt" color="teal" dark text><font color="white">Bookmarks</font></v-btn><v-divider vertical></v-divider>
+        
+        <v-divider vertical></v-divider>
 			<v-btn
               class="button" dark v-on="on" text icon color="white"
               @click="drawer = !drawer"
@@ -103,7 +107,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(item,i) in 4"
+      <tr v-for="(item,i) in 1"
       :key="i">
         <td>ARTHAYUDH</td>
         <td>Approved</td>
