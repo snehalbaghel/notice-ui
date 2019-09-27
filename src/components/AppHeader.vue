@@ -257,8 +257,6 @@
       transition="fade-transition"
     -->
 	<v-carousel-item
-      v-for="(item,i) in items"
-      :key="i"
       reverse-transition="fade-transition"
       transition="fade-transition"
     >
@@ -275,12 +273,77 @@
         ></v-img>
 		
 	</v-card>
-	
-	<!--v-row class="card1">
-		<v-col><v-card height="600" width="400" class="card1"></v-card></v-col>
-		<v-col><v-card height="600" width="400" class="card1"></v-card></v-col>
-		<v-col><v-card height="600" width="400" class="card1"></v-card></v-col>
-	</v-row-->
+	</v-carousel-item>
+	<v-carousel-item
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    >
+	<v-card
+	height="1800"
+	width="500">
+	<v-img
+		src="./cap.jpg"
+		aspect-ratio="1"
+        class="card"
+        max-height="1800"
+        max-width="500"
+		align-center
+        ></v-img>
+		
+	</v-card>
+	</v-carousel-item>
+	<v-carousel-item
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    >
+	<v-card
+	height="1800"
+	width="500">
+	<v-img
+		src="./poster1.png"
+		aspect-ratio="1"
+        class="card"
+        max-height="1800"
+        max-width="500"
+		align-center
+        ></v-img>
+		
+	</v-card>
+	</v-carousel-item>
+	<v-carousel-item
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    >
+	<v-card
+	height="1800"
+	width="500">
+	<v-img
+		src="./poster2.jpg"
+		aspect-ratio="1"
+        class="card"
+        max-height="1800"
+        max-width="500"
+		align-center
+        ></v-img>
+		
+	</v-card>
+	</v-carousel-item><v-carousel-item
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    >
+	<v-card
+	height="1800"
+	width="500">
+	<v-img
+		src="./poster3.png"
+		aspect-ratio="1"
+        class="card"
+        max-height="1800"
+        max-width="500"
+		align-center
+        ></v-img>
+		
+	</v-card>
 	</v-carousel-item>
   </v-carousel>
 
