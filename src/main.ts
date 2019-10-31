@@ -15,6 +15,19 @@ Vue.use(VCalendar, {
   componentPrefix: 'vc',  // Use <vc-calendar /> instead of <v-calendar />
 });
 
+
+// Vue.axios.get(api).then((response) => {
+  // console.log(response.data)
+// })
+//
+// this.axios.get(api).then((response) => {
+  // console.log(response.data)
+// })
+//
+// this.$http.get(api).then((response) => {
+  // console.log(response.data)
+// })
+
 new Vue({
   router,
   vuetify,

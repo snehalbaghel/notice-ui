@@ -1,22 +1,14 @@
 <template>
   <v-app>
-    <Student />
-    <!--AppHeader /-->
+    <router-view />
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import AppHeader from './components/AppHeader.vue';
-import Student from './components/Student.vue';
+  import { Component, Prop, Vue } from 'vue-property-decorator';
+  
+  @Component
+  export default class App extends Vue {
+  }
 
-export default Vue.extend({
-  name: 'App',
-  components: {
-    AppHeader,
-    Student,
-  },
-  data: () => ({
-  }),
-});
 </script>
