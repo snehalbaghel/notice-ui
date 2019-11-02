@@ -1,9 +1,9 @@
 <template>
   <v-container>
     <v-row>
-      <v-col v-for="n in count" :key="n"
-        :sm="12" :md="6" :lg="3">
-        <EventItem :event="events[n-1]"/>
+      <v-col v-for="(event, i) in events" :key="i"
+        :sm="12" :md="6" :lg="4">
+        <EventItem :event="event"/>
       </v-col>
     </v-row>
   </v-container>
@@ -51,11 +51,5 @@
       },
     ];
 
-    get count () {
-      if(this.events)
-        return this.events.length
-
-      return 0
-    }
   }
 </script>

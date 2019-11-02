@@ -11,7 +11,7 @@ import { User, AuthCredentials, AuthResponse } from '../models';
 })
 class AuthModule extends VuexModule {
 
-  user: User | null = null;
+  public user: User | null = null;
 
   get username() {
     return (this.user && this.user.username) || null;

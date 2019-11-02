@@ -13,7 +13,7 @@ export function clearJWT() {
   delete enoticeApi.defaults.headers.common.Authorization;
 }
 
-export async function fetchApprovedEvents(): Promise<[Event]> {
+export async function fetchApprovedEvents(): Promise<Event[]> {
   const response = await enoticeApi.get('/event');
   return response.data;
 }

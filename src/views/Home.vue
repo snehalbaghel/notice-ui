@@ -5,7 +5,8 @@
       <NavFilters />      
     </template>
     <template v-slot:main-content>
-      <EventGrid />
+      <!-- <EventGrid /> -->
+      <router-view />
     </template>
   </AppSkeleton>
 </template>

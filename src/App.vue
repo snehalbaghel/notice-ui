@@ -12,3 +12,9 @@
   }
 
 </script>
+<style lang="scss">
+  .header {
+    font-size: 3rem;
+    font-weight: 300;
+  }
+</style>

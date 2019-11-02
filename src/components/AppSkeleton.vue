@@ -18,7 +18,7 @@
 			/>
 			<div class="flex-grow-1"></div>
 			<v-menu v-model="menu" :close-on-content-click="false"
-				:nudge-width="200" offset-x>
+				:nudge-width="200" :max-width="300" offset-x>
       	<template v-slot:activator="{ on }">
         <v-btn outlined color="black" dark v-on="on">
           {{ username ? username : "Login" }}
@@ -29,7 +29,6 @@
         <v-list>
           <v-list-item>
             <v-list-item-avatar>
-              <!-- <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John"> -->
               <v-avatar color="primary">
                 <span class="white--text headline">{{ username ? username[0] : "G" }}</span>
               </v-avatar>
@@ -42,7 +41,6 @@
         </v-list>
 
         <v-divider></v-divider>
-        <br>
         <v-list v-if="!username">
           <v-list-item>
             <v-text-field v-model="email" label="Username/Email" outlined></v-text-field>
@@ -51,6 +49,19 @@
           <v-list-item>
             <v-text-field v-model="password" type="password" label="Password" outlined></v-text-field>
           </v-list-item>
+        </v-list>
+        <v-list v-else>
+          <v-list-item-group color="primary" >
+          <v-list-item @click="navigate(i)"
+            v-for="(item, i) in menuItems" :key="i">
+            <v-list-item-icon>
+              <v-icon v-text="item.icon"></v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.text"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          </v-list-item-group>
         </v-list>
 
         <v-card-actions>
@@ -99,17 +110,6 @@
     private email = '';
     private password = '';
     
-    get invalid() {
-      if(this.email && this.password) {
-        return false
-      }
-        return true
-    }
-
-    get username() {
-      return auth.username;
-    }
-
     login() {
       auth.loginUser({
 				email: this.email,
@@ -123,6 +123,41 @@
 
     logout() {
       auth.logoutUser();
+    }
+
+    navigate(routeIndex: number) {
+      this.$router.push({ name: this.menuItems[routeIndex].route})
+      this.menu = false;
+    }
+
+        get invalid() {
+      if(this.email && this.password) {
+        return false
+      }
+        return true
+    }
+
+    get username() {
+      return auth.username;
+    }
+
+    get isAdmin() {
+      return (auth.user && auth.user.admin)
+    }
+
+    get menuItems() {
+
+      const userMenu = [
+          { text: 'Home', icon: 'home', route: 'home' },
+          { text: 'Add Event', icon: 'add', route: 'add'},
+          { text: 'Publish', icon: 'publish', route: 'publish'},
+        ]  
+
+      if(this.username && this.isAdmin) {
+        return userMenu  // Admin menu
+      } else {
+        return userMenu //  User menu
+      }
     }
 
 }
