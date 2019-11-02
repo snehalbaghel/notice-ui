@@ -8,6 +8,8 @@ import './registerServiceWorker';
 import vuetify from './plugins/vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import VCalendar from 'v-calendar';
+import { setJWT } from './store/api';
+import auth from './store/modules/auth';
 
 Vue.config.productionTip = false;
 
@@ -15,18 +17,16 @@ Vue.use(VCalendar, {
   componentPrefix: 'vc',  // Use <vc-calendar /> instead of <v-calendar />
 });
 
+const  accessToken  =  localStorage.getItem('access_token');
+const user = localStorage.getItem('user');
 
-// Vue.axios.get(api).then((response) => {
-  // console.log(response.data)
-// })
-//
-// this.axios.get(api).then((response) => {
-  // console.log(response.data)
-// })
-//
-// this.$http.get(api).then((response) => {
-  // console.log(response.data)
-// })
+if (accessToken) {
+  setJWT(accessToken);
+}
+
+if (user) {
+  auth.setUser(JSON.parse(user));
+}
 
 new Vue({
   router,
