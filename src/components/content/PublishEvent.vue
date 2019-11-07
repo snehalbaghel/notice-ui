@@ -8,7 +8,7 @@
   import { Vue, Component } from 'vue-property-decorator';
   
   @Component
-  export default class PublishEvent extends Vue{
+  export default class PublishEvent extends Vue {
   
   }
 </script>

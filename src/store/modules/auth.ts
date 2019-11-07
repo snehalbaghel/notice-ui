@@ -42,7 +42,7 @@ class AuthModule extends VuexModule {
   @MutationAction
   public async logoutUser() {
     const response: AuthResponse = await logoutUser();
-    const user = response.user;
+    const user = response.user as User;
 
     if (response.status === 'success') {
       localStorage.removeItem('access_token');

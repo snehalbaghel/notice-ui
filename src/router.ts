@@ -12,17 +12,26 @@ export default new Router({
         {
           path: '/home',
           name: 'home',
-          component: () => import('./components/EventGrid.vue'),
+          components: {
+            content_slot: () => import('./components/content/EventGrid.vue'),
+            nav_slot:  () => import('./components/nav/EventFilters.vue'),
+          },
         },
         {
           path: '/add',
           name: 'add',
-          component: () => import('./components/AddEvent.vue'),
+          components: {
+            content_slot: () => import('./components/content/AddEvent.vue'),
+            nav_slot:  () => import('./components/nav/SavedEvents.vue'),
+          },
         },
         {
           path: '/publish',
           name: 'publish',
-          component: () => import('./components/PublishEvent.vue'),
+          components: {
+            content_slot: () => import('./components/content/PublishEvent.vue'),
+            nav_slot:  () => import('./components/nav/SavedEvents.vue'),
+          },
         },
       ],
     },

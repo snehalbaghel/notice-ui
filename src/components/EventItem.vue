@@ -8,7 +8,7 @@
       <v-list-item-content>
         <div class="overline mb-4">{{ event.time }}</div>
         <v-list-item-title class="headline mb-1">{{ event.title }}</v-list-item-title>
-        <v-list-item-subtitle>{{ event.description }}</v-list-item-subtitle>
+        <v-list-item-subtitle>{{ event.subtitle }}</v-list-item-subtitle>
       </v-list-item-content>
 
       <v-list-item-avatar
@@ -26,13 +26,13 @@
 </template>
 
 <script lang="ts">
-  import { Vue, Component, Prop  }  from 'vue-property-decorator'
-  import { Event } from '../store/models'; 
+  import { Vue, Component, Prop }  from 'vue-property-decorator';
+  import { Event } from '../store/models';
 
   @Component
   export default class EventItem extends Vue {
 
-    @Prop() event!: Event;
+    @Prop() private event!: Event;
 
   }
 </script>

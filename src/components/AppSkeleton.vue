@@ -109,7 +109,7 @@
     private menu: boolean = false;
     private email = '';
     private password = '';
-    
+
     login() {
       auth.loginUser({
 				email: this.email,

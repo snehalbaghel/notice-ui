@@ -1,7 +1,5 @@
 <template>
-  <v-list
-		dense
-		class="grey lighten-4 fill-height">
+  <v-list dense class="grey lighten-4 fill-height">
 			<v-list-item class="headline">Filters</v-list-item>
 			<div class="filter-name">Calendar</div>
 			<v-list-item>
@@ -40,9 +38,11 @@
 	import { Component, Prop, Vue } from 'vue-property-decorator';
 
 	@Component
-	export default class NavFilters extends Vue {
+	export default class EventFilters extends Vue {
+
 		private departments: number[] = [];
 		private tags: number[] = [];
+
 	}
 </script>
 

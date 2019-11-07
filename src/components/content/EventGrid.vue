@@ -10,9 +10,9 @@
 </template>
 
 <script lang="ts">
-  import { Vue, Component } from 'vue-property-decorator'
-  import EventItem from './EventItem.vue'
-  import { Event } from '../store/models'
+  import { Vue, Component } from 'vue-property-decorator';
+  import EventItem from '../EventItem.vue';
+  import { Event } from '../../store/models';
   
   @Component({
     components: {
@@ -20,34 +20,38 @@
     },
   })
   export default class EventGrid extends Vue {
-    events: Event[] | undefined = [
+    private events: Event[] | undefined = [
       {
-        title: 'Test',
-        description: 'None',
+        title: 'Title',
+        subtitle: 'Subtitle',
+        description: 'Description',
         venue: 'wasup',
-        time: 'sup',
-        link: '1039'
+        time: '10 Sep 2019',
+        link: '1039',
       },
       {
         title: 'Test',
-        description: 'None',
+        subtitle: 'None',
+        description: 'Description',
         venue: 'wasup',
         time: 'sup',
-        link: '1039'
+        link: '1039',
       },
       {
         title: 'Test',
-        description: 'None',
+        subtitle: 'None',
+        description: 'Description',
         venue: 'wasup',
         time: 'sup',
-        link: '1039'
+        link: '1039',
       },
       {
         title: 'Test',
-        description: 'None',
+        subtitle: 'None',
+        description: 'Description',
         venue: 'wasup',
         time: 'sup',
-        link: '1039'
+        link: '1039',
       },
     ];
 

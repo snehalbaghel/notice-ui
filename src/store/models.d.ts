@@ -1,9 +1,10 @@
 
 export interface Event {
   title: string;
+  subtitle: string;
   description: string;
   venue: string;
-  date_time: string;
+  time: string;
   link: string;
 }
 
