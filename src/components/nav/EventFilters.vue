@@ -40,8 +40,8 @@
 	@Component
 	export default class EventFilters extends Vue {
 
-		private departments: number[] = [];
-		private tags: number[] = [];
+	private departments: number[] = [];
+	private tags: number[] = [];
 
 	}
 </script>

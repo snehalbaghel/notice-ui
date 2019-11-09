@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col v-for="(event, i) in events" :key="i"
-        :sm="12" :md="6" :lg="4">
+        xs="12" md="6" lg="4">
         <EventItem :event="event"/>
       </v-col>
     </v-row>

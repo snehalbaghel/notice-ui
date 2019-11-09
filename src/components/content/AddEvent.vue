@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col :xs="12" :md="6" :lg="8">
+      <v-col xs="12" :md="6" :lg="8">
 
         <v-row>
           <v-col>
@@ -10,18 +10,18 @@
         </v-row>
 
         <v-row>
-          <v-col :xs="12" :md="6">
+          <v-col xs="12" :md="6">
             <v-text-field label="Title" outlined>
             </v-text-field>
           </v-col>
-          <v-col :xs="12" :md="6">
+          <v-col xs="12" :md="6">
             <v-text-field label="Sub-Title" outlined>
             </v-text-field>
           </v-col>
         </v-row>
 
         <v-row>
-          <v-col :xs="12">
+          <v-col xs="12">
             <v-textarea outlined name="input-7-4" 
               label="Description">
             </v-textarea>
@@ -29,11 +29,11 @@
         </v-row>
 
         <v-row>
-          <v-col :xs="12" :md="6">
+          <v-col xs="12" :md="6">
             <v-text-field label="Venue" outlined append-icon="my_location">
             </v-text-field>
           </v-col>
-          <v-col :xs="12" :md="6">
+          <v-col xs="12" :md="6">
             <vc-date-picker
               v-model="date"
               :popover="{ placement: 'bottom', visibility: 'click' }">
@@ -45,7 +45,7 @@
         </v-row>
 
         <v-row>
-          <v-col :xs="12" :md="6">
+          <v-col xs="12" :md="6">
             <v-menu ref="menu" v-model="timeMenu" :close-on-content-click="false"
               :nudge-right="40" :return-value.sync="time" transition="scale-transition" 
               offset-y max-width="250px" min-width="250px">
@@ -59,7 +59,7 @@
               </v-time-picker>
             </v-menu>
           </v-col>
-          <v-col :xs="12" :md="6">
+          <v-col xs="12" :md="6">
             <v-text-field label="Registration Link" readonly outlined
                 append-icon="link"></v-text-field>
           </v-col>
@@ -72,7 +72,7 @@
         </v-row>
 
       </v-col>
-      <v-col :xs="12" :md="6" :lg="4">
+      <v-col xs="12" :md="6" :lg="4">
         <v-row>
           <v-col>
             <span class="header">Preview</span>
@@ -97,9 +97,9 @@
   @Component({
     components: {
       EventItem,
-    }
+    },
   })
-  export default class AddEvent extends Vue{
+  export default class AddEvent extends Vue {
 
     private event: Event = {
       title: 'Preview Title',
@@ -107,11 +107,11 @@
       description: 'Preview Description',
       venue: 'Preview Venue',
       time: 'Somethin',
-      link: ''
-    }
+      link: '',
+    };
 
-    private date: Date | undefined;
-    private time: any;
+    private date: Date | null = null;
+    private time: any | null = null;
     private timeMenu: boolean = false;
 
 

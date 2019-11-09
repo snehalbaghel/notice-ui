@@ -1,5 +1,5 @@
 <template>
-	<v-app id="toolbar">
+  <v-app id="toolbar">
 		<v-app-bar
 			app
 			light
@@ -8,22 +8,16 @@
 			elevate-on-scroll>
 			<v-app-bar-nav-icon @click="drawer = !drawer" />
 			<span class="title ml-3 mr-5">E&nbsp;<span class="font-weight-light">Notice</span></span>
-			<v-text-field 
-				solo-inverted
-				flat
-				light
-				hide-details
-				label="Search"
-				prepend-inner-icon="search"
-			/>
+			<v-text-field solo-inverted flat light hide-details
+				label="Search" prepend-inner-icon="search" />
 			<div class="flex-grow-1"></div>
 			<v-menu v-model="menu" :close-on-content-click="false"
 				:nudge-width="200" :max-width="300" offset-x>
-      	<template v-slot:activator="{ on }">
-        <v-btn outlined color="black" dark v-on="on">
-          {{ username ? username : "Login" }}
-        </v-btn>
-      </template>
+        <template v-slot:activator="{ on }">
+          <v-btn outlined color="black" dark v-on="on">
+            {{ username ? username : "Login" }}
+          </v-btn>
+        </template>
 
       <v-card>
         <v-list>
@@ -42,13 +36,15 @@
 
         <v-divider></v-divider>
         <v-list v-if="!username">
+          <form>
           <v-list-item>
-            <v-text-field v-model="email" label="Username/Email" outlined></v-text-field>
+            <v-text-field v-model="email" label="Username/Email" autocomplete="username" outlined></v-text-field>
           </v-list-item>
 
           <v-list-item>
-            <v-text-field v-model="password" type="password" label="Password" outlined></v-text-field>
+            <v-text-field v-model="password" type="password" label="Password" autocomplete="current-passwprd" outlined></v-text-field>
           </v-list-item>
+          </form>
         </v-list>
         <v-list v-else>
           <v-list-item-group color="primary" >
@@ -96,7 +92,7 @@
         <slot name="main-content">
         </slot>
     </v-content>
-	</v-app>
+  </v-app>
 </template>
 
 <script lang="ts">
@@ -110,31 +106,32 @@
     private email = '';
     private password = '';
 
-    login() {
+    private login() {
       auth.loginUser({
-				email: this.email,
-				password: this.password,
-			})
+		    email: this.email,
+		    password: this.password,
+		  });
     }
 
-    signup() {
-      console.log("Make signup page")
+    private signup() {
+      // TODO
     }
 
-    logout() {
+    private logout() {
       auth.logoutUser();
     }
 
-    navigate(routeIndex: number) {
-      this.$router.push({ name: this.menuItems[routeIndex].route})
+    private navigate(routeIndex: number) {
+      this.$router.push({ name: this.menuItems[routeIndex].route});
       this.menu = false;
     }
 
-        get invalid() {
-      if(this.email && this.password) {
-        return false
+    get invalid() {
+      if (this.email && this.password) {
+        return false;
       }
-        return true
+
+      return true;
     }
 
     get username() {
@@ -142,7 +139,7 @@
     }
 
     get isAdmin() {
-      return (auth.user && auth.user.admin)
+      return (auth.user && auth.user.admin);
     }
 
     get menuItems() {
@@ -151,12 +148,12 @@
           { text: 'Home', icon: 'home', route: 'home' },
           { text: 'Add Event', icon: 'add', route: 'add'},
           { text: 'Publish', icon: 'publish', route: 'publish'},
-        ]  
+        ];
 
-      if(this.username && this.isAdmin) {
-        return userMenu  // Admin menu
+      if (this.username && this.isAdmin) {
+        return userMenu;  // Admin menu
       } else {
-        return userMenu //  User menu
+        return userMenu; //  User menu
       }
     }
 

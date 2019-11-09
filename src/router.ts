@@ -22,16 +22,22 @@ export default new Router({
           name: 'add',
           components: {
             content_slot: () => import('./components/content/AddEvent.vue'),
-            nav_slot:  () => import('./components/nav/SavedEvents.vue'),
+            nav_slot:  () => import('./components/nav/EventList.vue'),
           },
+          props: { nav_slot: { role: 'add'} },
         },
         {
           path: '/publish',
           name: 'publish',
           components: {
             content_slot: () => import('./components/content/PublishEvent.vue'),
-            nav_slot:  () => import('./components/nav/SavedEvents.vue'),
+            nav_slot:  () => import('./components/nav/EventList.vue'),
           },
+          props: { nav_slot: { role: 'publish'} },
+        },
+        {
+          path: '*',
+          redirect: 'home',
         },
       ],
     },
@@ -45,7 +51,7 @@ export default new Router({
     },
     {
       path: '*',
-      redirect: '/home',
+      redirect: 'home',
     },
   ],
 });

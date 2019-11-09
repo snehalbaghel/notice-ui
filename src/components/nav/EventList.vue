@@ -1,6 +1,6 @@
 <template>
   <v-list three-line class="grey lighten-4 fill-height">
-      <v-subheader>Saved Events</v-subheader>
+      <v-subheader>{{ role === 'add' ? 'Saved Events' : 'Published Events' }}</v-subheader>
       <template v-for="(event, index) in events">
         <v-list-item @click="eventClicked()" :key="index">
           <v-list-item-avatar>
@@ -16,23 +16,23 @@
         </v-list-item>
 
         <v-divider
-          v-if="index+1 !== events.length"
-          :key="index+'div'"
-          inset
-        ></v-divider>
+          v-if="index+1 !== events.length" :key="index+'div'" inset>
+        </v-divider>
       </template>
 
     </v-list>
 </template>
 
 <script lang="ts">
-  import { Vue, Component } from 'vue-property-decorator';
+  import { Vue, Component, Prop } from 'vue-property-decorator';
   import { Event } from '../../store/models';
 
   @Component
-  export default class SavedEvents extends Vue {
+  export default class EventList extends Vue {
 
-    events: Event[] | undefined = [
+    @Prop() private role: string | undefined;
+
+    private events: Event[] | undefined = [
       {
         title: 'Title',
         subtitle: 'Subtitle',
@@ -68,7 +68,7 @@
     ];
   
     private eventClicked() {
-      console.log('Event clicked')
+      // console.log('Event clicked');
     }
   }
 </script>

@@ -24,6 +24,7 @@ export async function loginUser(credentials: AuthCredentials): Promise<AuthRespo
 }
 
 export async function logoutUser(): Promise<AuthResponse> {
-  const resp = await enoticeApi.post('/auth/logout');
+  const resp = await enoticeApi.post('/auth/logout')
+                              .catch((error) =>  ({data: { status: 'success' }}));
   return resp.data;
 }

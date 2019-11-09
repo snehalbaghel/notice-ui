@@ -12,15 +12,15 @@
 
 
 <script lang="ts">
-import Vue from 'vue';
-import AppSkeleton from '../components/AppSkeleton.vue';
-import EventFilters from '../components/nav/EventFilters.vue';
+  import { Vue, Component } from 'vue-property-decorator';
+  import AppSkeleton from '../components/AppSkeleton.vue';
 
+  @Component({
+    components: {
+      AppSkeleton,
+    },
+  })
+  export default class Home extends Vue {
 
-export default Vue.extend({
-  components: {
-    AppSkeleton,
-    EventFilters,
-  },
-});
+  }
 </script>
