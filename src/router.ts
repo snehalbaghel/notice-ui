@@ -27,13 +27,13 @@ export default new Router({
           props: { nav_slot: { role: 'add'} },
         },
         {
-          path: '/publish',
-          name: 'publish',
+          path: '/approval',
+          name: 'approval',
           components: {
-            content_slot: () => import('./components/content/PublishEvent.vue'),
+            content_slot: () => import('./components/content/ApprovalStatus.vue'),
             nav_slot:  () => import('./components/nav/EventList.vue'),
           },
-          props: { nav_slot: { role: 'publish'} },
+          props: { nav_slot: { role: 'approval'} },
         },
         {
           path: '*',

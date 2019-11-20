@@ -8,8 +8,6 @@
 			elevate-on-scroll>
 			<v-app-bar-nav-icon @click="drawer = !drawer" />
 			<span class="title ml-3 mr-5">E&nbsp;<span class="font-weight-light">Notice</span></span>
-			<v-text-field solo-inverted flat light hide-details
-				label="Search" prepend-inner-icon="search" />
 			<div class="flex-grow-1"></div>
 			<v-menu v-model="menu" :close-on-content-click="false"
 				:nudge-width="200" :max-width="300" offset-x>
@@ -75,22 +73,14 @@
 			
 		</v-app-bar>
 
-		<v-navigation-drawer
-			v-model="drawer"
-			app
-			clipped
-			subheader
-			width="290"
-			color="gray lighten-4">
-			<slot name="nav-content">
-				<!-- Output filters -->
-			</slot>
+		<v-navigation-drawer class="navi" v-model="drawer" app clipped fixed
+			width="290" color="gray lighten-4">
+		  <slot name="nav-content" />
 		</v-navigation-drawer>
-		<!--Main Contents -->
+
     <v-content
       class="grey lighten-4 fill-height">
-        <slot name="main-content">
-        </slot>
+        <slot name="main-content" />
     </v-content>
   </v-app>
 </template>
@@ -147,7 +137,7 @@
       const userMenu = [
           { text: 'Home', icon: 'home', route: 'home' },
           { text: 'Add Event', icon: 'add', route: 'add'},
-          { text: 'Publish', icon: 'publish', route: 'publish'},
+          { text: 'Approval', icon: 'done', route: 'approval'},
         ];
 
       if (this.username && this.isAdmin) {
@@ -162,5 +152,8 @@
 
 
 <style lang="scss">
-
+  // .navi {
+  //   // position: fixed
+  //   // overflow-y: scroll;
+  // }
 </style>

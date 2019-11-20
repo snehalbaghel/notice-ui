@@ -1,6 +1,6 @@
 <template>
   <v-list three-line class="grey lighten-4 fill-height">
-      <v-subheader>{{ role === 'add' ? 'Saved Events' : 'Published Events' }}</v-subheader>
+      <v-subheader>{{ role === 'add' ? 'Saved Events' : 'Requests' }}</v-subheader>
       <template v-for="(event, index) in events">
         <v-list-item @click="eventClicked()" :key="index">
           <v-list-item-avatar>
@@ -32,7 +32,8 @@
 
     @Prop() private role: string | undefined;
 
-    private events: Event[] | undefined = [
+    get events() {
+      return [
       {
         title: 'Title',
         subtitle: 'Subtitle',
@@ -67,6 +68,7 @@
       },
     ];
   
+    }
     private eventClicked() {
       // console.log('Event clicked');
     }
