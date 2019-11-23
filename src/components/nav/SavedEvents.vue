@@ -1,6 +1,6 @@
 <template>
   <v-list three-line class="grey lighten-4 fill-height">
-      <v-subheader>{{ role === 'add' ? 'Saved Events' : 'Requests' }}</v-subheader>
+      <v-subheader>Saved Events</v-subheader>
       <template v-for="(event, index) in events">
         <v-list-item @click="eventClicked()" :key="index">
           <v-list-item-avatar>
@@ -26,48 +26,18 @@
 <script lang="ts">
   import { Vue, Component, Prop } from 'vue-property-decorator';
   import { Event } from '../../store/models';
+  import EventStore from '../../store/modules/event';
+
 
   @Component
-  export default class EventList extends Vue {
+  export default class SavedEvents extends Vue {
 
-    @Prop() private role: string | undefined;
+    private mounted() {
+      EventStore.fetchSEvents();
+    }
 
     get events() {
-      return [
-      {
-        title: 'Title',
-        subtitle: 'Subtitle',
-        description: 'Description',
-        venue: 'wasup',
-        time: '10 Sep 2019',
-        link: '1039',
-      },
-      {
-        title: 'Test',
-        subtitle: 'None',
-        description: 'Description',
-        venue: 'wasup',
-        time: 'sup',
-        link: '1039',
-      },
-      {
-        title: 'Test',
-        subtitle: 'None',
-        description: 'Description',
-        venue: 'wasup',
-        time: 'sup',
-        link: '1039',
-      },
-      {
-        title: 'Test',
-        subtitle: 'None',
-        description: 'Description',
-        venue: 'wasup',
-        time: 'sup',
-        link: '1039',
-      },
-    ];
-  
+        return EventStore.savedEvents;
     }
     private eventClicked() {
       // console.log('Event clicked');

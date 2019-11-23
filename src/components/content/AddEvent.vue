@@ -11,18 +11,18 @@
       <v-col sm="12" md="6" lg="8">
         <v-row>
           <v-col sm="12" md="6">
-            <v-text-field label="Title" outlined>
+            <v-text-field v-model="title" label="Title" outlined>
             </v-text-field>
           </v-col>
           <v-col sm="12" md="6">
-            <v-text-field label="Sub-Title" outlined>
+            <v-text-field v-model="subtitle" label="Sub-Title" outlined>
             </v-text-field>
           </v-col>
         </v-row>
 
         <v-row>
           <v-col sm="12">
-            <v-textarea outlined name="input-7-4" 
+            <v-textarea v-model="description" outlined name="input-7-4" 
               label="Description">
             </v-textarea>
           </v-col>
@@ -30,7 +30,7 @@
 
         <v-row>
           <v-col sm="12" md="6">
-            <v-text-field label="Venue" outlined append-icon="my_location">
+            <v-text-field v-model="venue" label="Venue" outlined append-icon="my_location">
             </v-text-field>
           </v-col>
           <v-col sm="12" md="6">
@@ -38,7 +38,7 @@
               v-model="date"
               :popover="{ placement: 'bottom', visibility: 'click' }">
               <v-text-field label="Date" readonly outlined
-                append-icon="event">
+                append-icon="event" v-model="formattedDate">
               </v-text-field>
             </vc-date-picker>
           </v-col>
@@ -50,8 +50,8 @@
               :nudge-right="40" :return-value.sync="time" transition="scale-transition" 
               offset-y max-width="250px" min-width="250px">
               <template v-slot:activator="{ on }">
-                <v-text-field v-model="time" label="Time" 
-                  append-icon="access_time" readonly outlined v-on="on">
+                <v-text-field label="Time" readonly v-model="time"
+                  append-icon="access_time" outlined v-on="on">
                 </v-text-field>
               </template>
               <v-time-picker v-if="timeMenu" v-model="time" full-width no-title
@@ -60,7 +60,7 @@
             </v-menu>
           </v-col>
           <v-col sm="12" md="6">
-            <v-text-field label="Registration Link" readonly outlined
+            <v-text-field v-model="regLink" label="Registration Link" outlined
                 append-icon="link"></v-text-field>
           </v-col>
         </v-row>
@@ -108,8 +108,14 @@
 
     <v-row>
       <v-col>
-        <v-btn color="primary">Save</v-btn>  
+        <v-btn @click="submitForm()" color="primary">Save</v-btn>  
       </v-col>
+      <v-snackbar v-model="snackbar">
+        {{ snackbarMessage }}
+        <v-btn text @click="snackbar = false">
+          Close
+        </v-btn>
+      </v-snackbar>
     </v-row>
   </v-container>
 </template>
@@ -118,6 +124,8 @@
   import { Vue, Component } from 'vue-property-decorator';
   import { Event } from '../../store/models';
   import EventItem from '../EventItem.vue';
+  import EventStore from '../../store/modules/event';
+  import { postEvent } from '../../store/api';
 
   @Component({
     components: {
@@ -126,24 +134,110 @@
   })
   export default class AddEvent extends Vue {
 
-    private event: Event = {
-      title: 'Preview Title',
-      subtitle: 'Subtitle',
-      description: 'Preview Description',
-      venue: 'Preview Venue',
-      time: 'Somethin',
-      link: '',
-    };
-
+    // Form
+    private title: string | null = null;
+    private subtitle: string | null = null;
+    private description: string | null = null;
+    private venue: string | null = null;
+    private regLink: string | null = null;
     private date: Date | null = null;
-    private time: any | null = null;
-    private timeMenu: boolean = false;
+    private time: string | null = null;
     private selectedTags: string[] | null = null;
 
+    private timeMenu: boolean = false;
+    private snackbarMessage: string | null = null;
+    private snackbar: boolean = false;
 
-  get tags() {
-    return ['programming', 'sports', 'debating']
-  }
+
+    get event() {
+      return {
+        title: this.title || 'Preview Title',
+        subtitle: this.subtitle || 'Preview Subtitle',
+        description: this.description || 'Preview Description',
+        venue: this.venue || 'Preview Venue',
+        time: this.time || 'Time/Date',
+        link: this.regLink || '',
+      };
+    }
+
+
+    private async submitForm() {
+
+      if (this.validate()) {
+        const combineDT = this.date;
+        combineDT!.setHours(parseInt(this.time!.slice(0, 2), 10));
+        combineDT!.setMinutes(parseInt(this.time!.slice(3), 10));
+
+        const data: Event = {
+          title: this.title!,
+          subtitle: this.subtitle!,
+          description: this.description!,
+          time: combineDT!.toISOString(),
+          venue: this.venue!,
+          link: this.regLink!,
+        };
+
+        const response = await postEvent(data);
+
+        this.snackbarMessage = response.status === 'success' ? 'Event successfully saved.' :
+          'Sorry, we\'re having some trouble.';
+
+        await EventStore.fetchSEvents();
+        this.snackbar = true;
+
+      } else {
+        this.snackbar = true;
+      }
+    }
+
+    // TODO: Add better validation
+    private validate() {
+
+      const message = 'is required.';
+      this.snackbarMessage = null;
+
+      if (!this.regLink) {
+        this.snackbarMessage = `Registration link ${message}`;
+      }
+
+      if (!this.time) {
+        this.snackbarMessage = `Time ${message}`;
+      }
+
+      if (!this.date) {
+        this.snackbarMessage = `Date ${message}`;
+      }
+
+      if (!this.venue) {
+        this.snackbarMessage = `Venue ${message}`;
+      }
+
+      if (!this.description) {
+        this.snackbarMessage = `Description ${message}`;
+      }
+
+      if (!this.subtitle) {
+        this.snackbarMessage = `Subtitle ${message}`;
+      }
+
+      if (!this.title) {
+        this.snackbarMessage = `Title ${message}`;
+      }
+
+      return this.snackbarMessage ? false : true;
+
+    }
+
+    get formattedDate() {
+      return this.date ? (this.date.getDate() + '/' + this.date.getMonth() +
+        '/' + this.date.getFullYear()) : '';
+    }
+
+    get tags() {
+      return ['programming', 'sports', 'debating'];
+    }
+
+
 
   }
 </script>

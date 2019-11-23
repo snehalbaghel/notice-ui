@@ -22,18 +22,16 @@ export default new Router({
           name: 'add',
           components: {
             content_slot: () => import('./components/content/AddEvent.vue'),
-            nav_slot:  () => import('./components/nav/EventList.vue'),
+            nav_slot:  () => import('./components/nav/SavedEvents.vue'),
           },
-          props: { nav_slot: { role: 'add'} },
         },
         {
           path: '/approval',
           name: 'approval',
           components: {
             content_slot: () => import('./components/content/ApprovalStatus.vue'),
-            nav_slot:  () => import('./components/nav/EventList.vue'),
+            nav_slot:  () => import('./components/nav/SavedEvents.vue'),
           },
-          props: { nav_slot: { role: 'approval'} },
         },
         {
           path: '*',

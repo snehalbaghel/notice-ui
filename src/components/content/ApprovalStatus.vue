@@ -33,12 +33,12 @@
 <script lang="ts">
   import { Vue, Component } from 'vue-property-decorator';
   import EventItem from '../EventItem.vue';
-import { Event } from '../../store/models';
-  
+  import { Event } from '../../store/models';
+
   @Component({
     components: {
       EventItem,
-    }
+    },
   })
   export default class ApprovalStatus extends Vue {
     private event: Event = {

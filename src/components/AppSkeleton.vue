@@ -97,10 +97,7 @@
     private password = '';
 
     private login() {
-      auth.loginUser({
-		    email: this.email,
-		    password: this.password,
-		  });
+      auth.loginUser({ email: this.email, password: this.password });
     }
 
     private signup() {

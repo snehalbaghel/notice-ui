@@ -1,11 +1,13 @@
 
 export interface Event {
+  id? : string;
   title: string;
   subtitle: string;
   description: string;
   venue: string;
   time: string;
   link: string;
+  picture_id? : string; 
 }
 
 export interface User {
@@ -20,6 +22,11 @@ export interface AuthResponse {
   message: string;
   Authorization?: string;
   user?: User
+}
+
+export interface PostResponse {
+  status: string;
+  message: string;
 }
 
 export interface AuthCredentials {
