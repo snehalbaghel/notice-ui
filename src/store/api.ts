@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Event, AuthCredentials, AuthResponse, PostResponse } from './models';
+import { Event, AuthCredentials, AuthResponse, PostResponse, Tag } from './models';
 
 export const enoticeApi = axios.create({
   baseURL: 'http://127.0.0.1:5000',
@@ -25,7 +25,7 @@ export async function loginUser(credentials: AuthCredentials): Promise<AuthRespo
 
 export async function logoutUser(): Promise<AuthResponse> {
   const resp = await enoticeApi.post('/auth/logout')
-                              .catch((error) =>  ({data: { status: 'success' }}));
+                      .catch((error) =>  ({data: { status: 'success' }}));
   return resp.data;
 }
 
@@ -36,5 +36,10 @@ export async function fetchSavedEvents(): Promise<Event[]> {
 
 export async function postEvent(data: Event): Promise<PostResponse> {
   const response = await enoticeApi.post('/event/', data);
+  return response.data;
+}
+
+export async function fetchTags(): Promise<Tag[]> {
+  const response = await enoticeApi.get('/tag/all');
   return response.data;
 }

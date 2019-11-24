@@ -1,7 +1,7 @@
-import { getModule, Module, MutationAction, VuexModule, Mutation } from 'vuex-module-decorators';
+import { getModule, Module, MutationAction, VuexModule } from 'vuex-module-decorators';
 import store from '..';
-import { fetchPublishedEvents, fetchSavedEvents } from '../api';
-import { Event } from '../models';
+import { fetchPublishedEvents, fetchSavedEvents, fetchTags} from '../api';
+import { Event, Tag } from '../models';
 
 @Module({
   namespaced: true,
@@ -13,6 +13,7 @@ class EventModule extends VuexModule {
 
   public events: Event[] | null = null;
   public savedEvents: Event[] | null = null;
+  public tags: Tag[] | null = null;
 
   @MutationAction
   public async fetchSEvents() {
@@ -23,10 +24,17 @@ class EventModule extends VuexModule {
   }
 
   @MutationAction
-  public async getPublishedEvents() {
+  public async fetchPublishedEvents() {
     const events: Event[] = await fetchPublishedEvents();
 
     return { events };
+  }
+
+  @MutationAction
+  public async fetchTags() {
+    const tags: Tag[] = await fetchTags();
+
+    return { tags };
   }
 }
 

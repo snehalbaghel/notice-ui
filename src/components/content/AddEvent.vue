@@ -148,6 +148,11 @@
     private snackbarMessage: string | null = null;
     private snackbar: boolean = false;
 
+    private mounted() {
+      if (!EventStore.tags) {
+        EventStore.fetchTags();
+      }
+    }
 
     get event() {
       return {
@@ -157,6 +162,7 @@
         venue: this.venue || 'Preview Venue',
         time: this.time || 'Time/Date',
         link: this.regLink || '',
+        tags: this.selectedTags,
       };
     }
 
@@ -175,6 +181,7 @@
           time: combineDT!.toISOString(),
           venue: this.venue!,
           link: this.regLink!,
+          tags: this.selectedTags!,
         };
 
         const response = await postEvent(data);
@@ -224,6 +231,10 @@
         this.snackbarMessage = `Title ${message}`;
       }
 
+      if (!this.selectedTags || this.selectedTags.length === 0) {
+        this.snackbarMessage = 'Add atleast one tag to your event';
+      }
+
       return this.snackbarMessage ? false : true;
 
     }
@@ -234,10 +245,8 @@
     }
 
     get tags() {
-      return ['programming', 'sports', 'debating'];
+      return EventStore.tags ? EventStore.tags.map((tag) => tag.name) : [];
     }
-
-
 
   }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <v-list three-line class="grey lighten-4 fill-height">
       <v-subheader>Saved Events</v-subheader>
-      <template v-for="(event, index) in events">
+      <template v-for="(event, index) in events.slice().reverse()">
         <v-list-item @click="eventClicked()" :key="index">
           <v-list-item-avatar>
             <v-avatar color="primary">
@@ -37,7 +37,7 @@
     }
 
     get events() {
-        return EventStore.savedEvents;
+        return EventStore.savedEvents ? EventStore.savedEvents: [];
     }
     private eventClicked() {
       // console.log('Event clicked');

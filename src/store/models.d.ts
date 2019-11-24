@@ -8,6 +8,7 @@ export interface Event {
   time: string;
   link: string;
   picture_id? : string; 
+  tags?: string[];
 }
 
 export interface User {
@@ -32,4 +33,10 @@ export interface PostResponse {
 export interface AuthCredentials {
   email: string;
   password: string;
+}
+
+export interface Tag {
+  id: string;
+  name: string;
+  count: number;
 }
