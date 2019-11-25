@@ -197,6 +197,10 @@
       }
     }
 
+    private removeTag(item: string) {
+      this.selectedTags = this.selectedTags!.filter( (tag) => tag !== item )
+    }
+
     // TODO: Add better validation
     private validate() {
 
