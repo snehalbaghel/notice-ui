@@ -87,7 +87,7 @@
 
         <v-row>
           <v-col>
-              <v-file-input  accept="image/*" label="Upload poster image"></v-file-input>
+              <v-file-input  v-model="file" accept="image/*" label="Upload poster image"></v-file-input>
           </v-col>
         </v-row>
 
@@ -125,7 +125,7 @@
   import { Event } from '../../store/models';
   import EventItem from '../EventItem.vue';
   import EventStore from '../../store/modules/event';
-  import { postEvent } from '../../store/api';
+  import { postEvent, uploadImage } from '../../store/api';
 
   @Component({
     components: {
@@ -143,6 +143,7 @@
     private date: Date | null = null;
     private time: string | null = null;
     private selectedTags: string[] | null = null;
+    private file: File | null = null;
 
     private timeMenu: boolean = false;
     private snackbarMessage: string | null = null;
@@ -166,10 +167,25 @@
       };
     }
 
+    private async uploadImg() {
+      const data = await uploadImage(this.file!);
+      if (data.status === 'success') {
+        return data.picture_id;
+      }
+    }
+
 
     private async submitForm() {
-
       if (this.validate()) {
+
+        const upload_id = await this.uploadImg();
+
+        if (!upload_id) {
+          this.snackbarMessage = 'We were unable to upload your image.'
+          this.snackbar = true;
+          return;
+        }
+
         const combineDT = this.date;
         combineDT!.setHours(parseInt(this.time!.slice(0, 2), 10));
         combineDT!.setMinutes(parseInt(this.time!.slice(3), 10));
@@ -182,6 +198,7 @@
           venue: this.venue!,
           link: this.regLink!,
           tags: this.selectedTags!,
+          picture_id: upload_id,
         };
 
         const response = await postEvent(data);
@@ -198,7 +215,7 @@
     }
 
     private removeTag(item: string) {
-      this.selectedTags = this.selectedTags!.filter( (tag) => tag !== item )
+      this.selectedTags = this.selectedTags!.filter( (tag) => tag !== item );
     }
 
     // TODO: Add better validation
@@ -206,6 +223,10 @@
 
       const message = 'is required.';
       this.snackbarMessage = null;
+
+      if(!this.file) {
+        this.snackbarMessage = 'Please select an image';
+      }
 
       if (!this.regLink) {
         this.snackbarMessage = `Registration link ${message}`;

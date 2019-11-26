@@ -1,4 +1,10 @@
 
+// TODO: Inherit in all response type
+// export interface Response {
+//   status: string;
+//   message: string;
+// }
+
 export interface Event {
   id? : string;
   title: string;
@@ -39,4 +45,9 @@ export interface Tag {
   id: string;
   name: string;
   count: number;
+}
+
+export interface UploadResponse {
+  status: string;
+  picture_id: string;
 }

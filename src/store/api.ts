@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Event, AuthCredentials, AuthResponse, PostResponse, Tag } from './models';
+import { Event, AuthCredentials, AuthResponse, PostResponse, Tag, UploadResponse } from './models';
 
 export const enoticeApi = axios.create({
   baseURL: 'http://127.0.0.1:5000',
@@ -41,5 +41,18 @@ export async function postEvent(data: Event): Promise<PostResponse> {
 
 export async function fetchTags(): Promise<Tag[]> {
   const response = await enoticeApi.get('/tag/all');
+  return response.data;
+}
+
+export async function uploadImage(file: File): Promise<UploadResponse> {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const response = await enoticeApi.post('/event/image', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
   return response.data;
 }
