@@ -1,6 +1,25 @@
 <template>
-  <v-list three-line class="grey lighten-4 fill-height">
-      <v-subheader>Saved Events</v-subheader>
+  <div class="grey lighten-4 fill-height">
+    <v-list class="top">
+      <v-list-item>
+          <v-list-item-icon>  
+            <!-- <v-avatar color="white"> -->
+              <v-icon>add</v-icon>
+
+                <!-- <span class="white--text headline">{{ event.title[0] }}</span> -->
+            <!-- </v-avatar> -->
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <!-- Add Event -->
+            <!-- <h4>Add Event</h4> -->
+            <v-list-item-title>Add Event</v-list-item-title>
+            <!-- <v-list-item-subtitle><span class='text--primary'>{{ event.time }}</span> &mdash; {{ event.subtitle }}</v-list-item-subtitle> -->
+          </v-list-item-content>
+        </v-list-item>
+    </v-list>
+    <v-list three-line class="bottom">
+      <v-subheader>Your Events</v-subheader>
       <template v-for="(event, index) in events.slice().reverse()">
         <v-list-item @click="eventClicked()" :key="index">
           <v-list-item-avatar>
@@ -21,6 +40,7 @@
       </template>
 
     </v-list>
+  </div>  
 </template>
 
 <script lang="ts">
@@ -37,10 +57,20 @@
     }
 
     get events() {
-        return EventStore.savedEvents ? EventStore.savedEvents: [];
+        return EventStore.savedEvents ? EventStore.savedEvents : [];
     }
     private eventClicked() {
       // console.log('Event clicked');
     }
   }
 </script>
+
+<style lang="scss">
+  .top {
+    padding-bottom: 0px;
+  }
+
+  .bottom {
+    padding-top: 0px; 
+  }
+</style>
