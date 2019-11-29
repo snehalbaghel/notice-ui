@@ -13,47 +13,21 @@
   import { Vue, Component } from 'vue-property-decorator';
   import EventItem from '../EventItem.vue';
   import { Event } from '../../store/models';
-  
+  import EventStore from '../../store/modules/event';
+
   @Component({
     components: {
       EventItem,
     },
   })
   export default class EventGrid extends Vue {
-    private events: Event[] | undefined = [
-      {
-        title: 'Title',
-        subtitle: 'Subtitle',
-        description: 'Description',
-        venue: 'wasup',
-        time: '10 Sep 2019',
-        link: '1039',
-      },
-      {
-        title: 'Test',
-        subtitle: 'None',
-        description: 'Description',
-        venue: 'wasup',
-        time: 'sup',
-        link: '1039',
-      },
-      {
-        title: 'Test',
-        subtitle: 'None',
-        description: 'Description',
-        venue: 'wasup',
-        time: 'sup',
-        link: '1039',
-      },
-      {
-        title: 'Test',
-        subtitle: 'None',
-        description: 'Description',
-        venue: 'wasup',
-        time: 'sup',
-        link: '1039',
-      },
-    ];
 
+    private mounted() {
+      EventStore.fetchPublishedEvents();
+    }
+
+    get events() {
+      return EventStore.events;
+    }
   }
 </script>

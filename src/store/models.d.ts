@@ -51,3 +51,14 @@ export interface UploadResponse {
   status: string;
   picture_id: string;
 }
+
+export interface RequestHistoryResponse {
+  status: string;
+  message?: string;
+  current_status: string;
+  timeline: {
+    actor: string;
+    datetime: string;
+    message: string;
+  } 
+}

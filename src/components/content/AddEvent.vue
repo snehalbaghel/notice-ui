@@ -8,20 +8,20 @@
     </v-row>
 
     <v-row>
-      <v-col sm="12" md="6" lg="8">
+      <v-col cols="12" sm="6" md="8">
         <v-row>
-          <v-col sm="12" md="6">
+          <v-col cols="12" sm="6">
             <v-text-field v-model="title" label="Title" outlined>
             </v-text-field>
           </v-col>
-          <v-col sm="12" md="6">
+          <v-col cols="12" sm="6">
             <v-text-field v-model="subtitle" label="Sub-Title" outlined>
             </v-text-field>
           </v-col>
         </v-row>
 
         <v-row>
-          <v-col sm="12">
+          <v-col cols="12">
             <v-textarea v-model="description" outlined name="input-7-4" 
               label="Description">
             </v-textarea>
@@ -29,11 +29,11 @@
         </v-row>
 
         <v-row>
-          <v-col sm="12" md="6">
-            <v-text-field v-model="venue" label="Venue" outlined append-icon="my_location">
+          <v-col cols="12" sm="6">
+            <v-text-field v-model="venue" label="Venue" outlined append-icon="mdi-map-marker">
             </v-text-field>
           </v-col>
-          <v-col sm="12" md="6">
+          <v-col cols="12" sm="6">
             <vc-date-picker
               v-model="date"
               :popover="{ placement: 'bottom', visibility: 'click' }">
@@ -45,7 +45,7 @@
         </v-row>
 
         <v-row>
-          <v-col sm="12" md="6">
+          <v-col cols="12" sm="6">
             <v-menu ref="menu" v-model="timeMenu" :close-on-content-click="false"
               :nudge-right="40" :return-value.sync="time" transition="scale-transition" 
               offset-y max-width="250px" min-width="250px">
@@ -59,7 +59,7 @@
               </v-time-picker>
             </v-menu>
           </v-col>
-          <v-col sm="12" md="6">
+          <v-col cols="12" sm="6">
             <v-text-field v-model="regLink" label="Registration Link" outlined
                 append-icon="link"></v-text-field>
           </v-col>
@@ -67,7 +67,7 @@
       </v-col>
 
 
-      <v-col sm="12" md="6" lg="4">
+      <v-col cols="12" sm="6" md="4">
         <v-row>
           <v-col>
             <v-combobox v-model="selectedTags" :items="tags" chips
@@ -108,7 +108,9 @@
 
     <v-row>
       <v-col>
-        <v-btn @click="submitForm()" color="primary">Save</v-btn>  
+        <v-btn @click="submitForm()" color="primary">Save
+          <v-icon right>mdi-content-save</v-icon>  
+        </v-btn>  
       </v-col>
       <v-snackbar v-model="snackbar">
         {{ snackbarMessage }}
@@ -265,8 +267,9 @@
     }
 
     get formattedDate() {
-      return this.date ? (this.date.getDate() + '/' + this.date.getMonth() +
-        '/' + this.date.getFullYear()) : '';
+
+      return this.date ? (this.date.getDate() + ' ' + this.date.getMonth() +
+        ' ' + this.date.getFullYear()) : '';
     }
 
     get tags() {

@@ -26,12 +26,13 @@ export default new Router({
           },
         },
         {
-          path: '/approval',
-          name: 'approval',
+          path: '/user/event/:id',
+          name: 'event_summary',
           components: {
-            content_slot: () => import('./components/content/ApprovalStatus.vue'),
-            nav_slot:  () => import('./components/nav/SavedEvents.vue'),
+            content_slot: () => import('./components/content/EventSummary.vue'),
+            nav_slot: () => import('./components/nav/SavedEvents.vue'),
           },
+          props: { content_slot: true },
         },
         {
           path: '*',

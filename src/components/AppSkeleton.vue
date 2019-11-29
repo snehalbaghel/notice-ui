@@ -2,10 +2,8 @@
   <v-app id="toolbar">
 		<v-app-bar
 			app
-			light
 			clipped-left
-			color="teal"
-			elevate-on-scroll>
+			color="indigo lighten-2">
 			<v-app-bar-nav-icon @click="drawer = !drawer" />
 			<span class="title ml-3 mr-5">E&nbsp;<span class="font-weight-light">Notice</span></span>
 			<div class="flex-grow-1"></div>
@@ -88,6 +86,7 @@
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator';
   import auth from '../store/modules/auth';
+  import EventStore from '../store/modules/event';
 
   @Component
   export default class AppSkeleton extends Vue {
@@ -109,7 +108,7 @@
     }
 
     private navigate(routeIndex: number) {
-      this.$router.push({ name: this.menuItems[routeIndex].route});
+      this.$router.push({ name: this.menuItems[routeIndex].route });
       this.menu = false;
     }
 
@@ -133,8 +132,7 @@
 
       const userMenu = [
           { text: 'Home', icon: 'home', route: 'home' },
-          { text: 'Add Event', icon: 'add', route: 'add'},
-          { text: 'Approval', icon: 'done', route: 'approval'},
+          { text: 'Your Events', icon: 'mdi-calendar', route: 'add'},
         ];
 
       if (this.username && this.isAdmin) {
@@ -146,11 +144,3 @@
 
 }
 </script>
-
-
-<style lang="scss">
-  // .navi {
-  //   // position: fixed
-  //   // overflow-y: scroll;
-  // }
-</style>
