@@ -62,3 +62,9 @@ export interface RequestHistoryResponse {
     message: string;
   } 
 }
+
+export interface SignUpPayload {
+  email: string;
+  password: string;
+  username: string;
+}

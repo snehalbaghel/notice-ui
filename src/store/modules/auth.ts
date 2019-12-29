@@ -1,7 +1,7 @@
-import { getModule, Module, MutationAction, VuexModule, Mutation } from 'vuex-module-decorators';
+import { getModule, Module, MutationAction, VuexModule, Mutation, Action } from 'vuex-module-decorators';
 import store from '..';
-import { loginUser, setJWT, logoutUser, clearJWT } from '../api';
-import { User, AuthCredentials, AuthResponse } from '../models';
+import { loginUser, setJWT, logoutUser, clearJWT, postNewUser } from '../api';
+import { User, AuthCredentials, AuthResponse, SignUpPayload } from '../models';
 
 @Module({
   namespaced: true,
@@ -12,9 +12,14 @@ import { User, AuthCredentials, AuthResponse } from '../models';
 class AuthModule extends VuexModule {
 
   public user: User | null = null;
+  public error: string | null = null;
 
   get username() {
     return (this.user && this.user.username) || null;
+  }
+
+  get errorMessage() {
+    return this.error || null;
   }
 
   @Mutation
@@ -23,7 +28,19 @@ class AuthModule extends VuexModule {
     // return { user };
   }
 
-  @MutationAction
+  @Mutation
+  public setAuthResponse(response: AuthResponse) {
+    this.error = null;
+
+    if (response.status !== 'success') {
+      this.error = response.message;
+    } else {
+      this.user = response.user as User;
+    }
+
+  }
+
+  @Action({ commit: 'setAuthResponse' })
   public async loginUser(credentials: AuthCredentials) {
 
     const response: AuthResponse = await loginUser(credentials);
@@ -33,10 +50,28 @@ class AuthModule extends VuexModule {
     if (token) {
       setJWT(token);
       localStorage.setItem('access_token', token);
-      localStorage.setItem('user', JSON.stringify(user) );
+      localStorage.setItem('user', JSON.stringify(user));
     }
 
-    return { user };
+    return response;
+
+  }
+
+  @Action({ commit: 'setAuthResponse' })
+  public async signUpUser(payload: SignUpPayload) {
+
+    const response: AuthResponse = await postNewUser(payload);
+    const user = response.user as User;
+    const token = response.Authorization;
+
+    if (token) {
+      setJWT(token);
+      localStorage.setItem('access_token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+    }
+
+    return response;
+
   }
 
   @MutationAction

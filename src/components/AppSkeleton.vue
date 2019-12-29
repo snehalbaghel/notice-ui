@@ -38,7 +38,7 @@
           </v-list-item>
 
           <v-list-item>
-            <v-text-field v-model="password" type="password" label="Password" autocomplete="current-passwprd" outlined></v-text-field>
+            <v-text-field v-model="password" type="password" label="Password" autocomplete="current-password" outlined></v-text-field>
           </v-list-item>
           </form>
         </v-list>
@@ -100,11 +100,12 @@
     }
 
     private signup() {
-      this.$router.push({name:'signup'});
+      this.$router.push({name: 'signup'});
     }
 
     private logout() {
       auth.logoutUser();
+      this.$router.push({ name: 'home' });
     }
 
     private navigate(routeIndex: number) {
@@ -135,8 +136,14 @@
           { text: 'Your Events', icon: 'mdi-calendar', route: 'add'},
         ];
 
+      const adminMenu = [
+          { text: 'Home', icon: 'home', route: 'home' },
+          { text: 'Your Events', icon: 'mdi-calendar', route: 'add'},
+          { text: 'Requests', icon: 'mdi-account-check', route: 'requests'},
+      ];
+
       if (this.username && this.isAdmin) {
-        return userMenu;  // Admin menu
+        return adminMenu;  // Admin menu
       } else {
         return userMenu; //  User menu
       }

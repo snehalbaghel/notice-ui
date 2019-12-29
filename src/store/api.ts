@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { Event, AuthCredentials, AuthResponse, PostResponse, Tag, UploadResponse, RequestHistoryResponse } from './models';
+import { Event, AuthCredentials, AuthResponse, PostResponse,
+  Tag, UploadResponse, RequestHistoryResponse, SignUpPayload } from './models';
 
 export const enoticeApi = axios.create({
   baseURL: 'http://127.0.0.1:5000',
@@ -64,5 +65,15 @@ export async function fetchRequestHistory(id: string): Promise<RequestHistoryRes
 
 export async function postRequest(id: string): Promise<PostResponse> {
   const response = await enoticeApi.post('/request/', {event_id: id});
+  return response.data;
+}
+
+export async function fetchPendingEvents(): Promise<any> {
+  const response = await enoticeApi.get('/event/pending');
+  // console.log(response);
+}
+
+export async function postNewUser(payload: SignUpPayload): Promise<AuthResponse> {
+  const response = await enoticeApi.post('/user', payload);
   return response.data;
 }

@@ -163,7 +163,7 @@
         subtitle: this.subtitle || 'Preview Subtitle',
         description: this.description || 'Preview Description',
         venue: this.venue || 'Preview Venue',
-        time: this.time || 'Time/Date',
+        time: this.date || 'Time/Date',
         link: this.regLink || '',
         tags: this.selectedTags,
       };
@@ -180,9 +180,9 @@
     private async submitForm() {
       if (this.validate()) {
 
-        const upload_id = await this.uploadImg();
+        const uploadId = await this.uploadImg();
 
-        if (!upload_id) {
+        if (!uploadId) {
           this.snackbarMessage = 'We were unable to upload your image.'
           this.snackbar = true;
           return;
@@ -200,7 +200,7 @@
           venue: this.venue!,
           link: this.regLink!,
           tags: this.selectedTags!,
-          picture_id: upload_id,
+          picture_id: uploadId,
         };
 
         const response = await postEvent(data);
@@ -230,6 +230,10 @@
         this.snackbarMessage = 'Please select an image';
       }
 
+      if (!this.selectedTags || this.selectedTags.length === 0) {
+        this.snackbarMessage = 'Add atleast one tag to your event';
+      }
+
       if (!this.regLink) {
         this.snackbarMessage = `Registration link ${message}`;
       }
@@ -256,10 +260,6 @@
 
       if (!this.title) {
         this.snackbarMessage = `Title ${message}`;
-      }
-
-      if (!this.selectedTags || this.selectedTags.length === 0) {
-        this.snackbarMessage = 'Add atleast one tag to your event';
       }
 
       return this.snackbarMessage ? false : true;

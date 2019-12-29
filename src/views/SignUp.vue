@@ -2,44 +2,39 @@
   <v-app>
   <v-container class="signup fill-height" fluid>
     <v-row align="center" justify="center">
-      <v-card class="mx-auto" max-width="344" outlined>
+      <v-card  class="mx-auto" max-width="344">
       <v-list-item three-line>
       <v-list-item-content>
-        <v-list-item-title class="headline mb-1">Sign-Up</v-list-item-title>
-        <v-text-field
-            value=""
-            label="Email"
-            outlined
-            readonly
-          ></v-text-field>
-          <v-text-field
-            value=""
-            label="Username"
-            outlined
-            readonly
-          ></v-text-field>
-          <v-text-field
-            v-model="password"
-            value=""
-            label="Password"
-            outlined
-            readonly
-          ></v-text-field>
-          <v-text-field
-            v-model="password"
-            value=""
-            label="Confirm Password"
-            outlined
-            readonly
-          ></v-text-field>
-      </v-list-item-content>
 
+        <v-list-item-title class="headline pa-4 px-2">Welcome to Enotice 🎉</v-list-item-title>
+        <v-divider/>
+        <v-subheader class="px-2">Let's get started</v-subheader>
+
+        <v-form>
+          <v-text-field class="px-1" value="" v-model="email" label="Email" outlined required/>
+          <v-text-field class="px-1" value="" v-model="username" label="Username" outlined required/>
+          <v-text-field class="px-1" :type="showPass ? 'text' : 'password'" 
+            :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="showPass = !showPass" required autocomplete="new-password"
+            v-model="newPassword" value="" label="Password" outlined/>
+        </v-form>
+      </v-list-item-content>
       </v-list-item>
+      <v-divider></v-divider>
       <v-card-actions>
-        <v-btn color="primary" text @click="signup()">Sign Up</v-btn>
+        <v-btn color="grey darken-2" text @click="goBack()">Go Back</v-btn>
+          <v-spacer></v-spacer>
+        <v-btn class="signup_btn" color="red" text @click="signup()"><b>Sign up</b></v-btn>
+        <!-- <v-btn class="px-4" color="primary" text @click="signup()">Sign Up</v-btn> -->
       </v-card-actions>
       </v-card>
       </v-row>    
+      <v-snackbar v-model="snackbar">
+      {{ snackbarMessage }}
+      <v-btn text @click="snackbar = false">
+        Close
+      </v-btn>
+    </v-snackbar>
     </v-container>
   </v-app>
 </template>
@@ -47,21 +42,56 @@
 
 <script lang="ts">
   import { Vue, Component } from 'vue-property-decorator';
+  import auth from '../store/modules/auth';
 
   @Component({
     components: {
     },
   })
   export default class Home extends Vue {
-      private signup() {
-      this.$router.push({name:'home'});
+    private newPassword = '';
+    private email = '';
+    private username = '';
+    private showPass = false;
+    private snackbar = false;
+    private snackbarMessage = '';
+
+    private async signup() {
+      if (!this.email) {
+        this.snackbarMessage = 'Please enter email.'
+        this.snackbar = true;
+      } else if (!this.username) {
+        this.snackbarMessage = 'Please enter username.'
+        this.snackbar = true;
+      } else if (!this.newPassword && this.newPassword.length < 7) {
+        this.snackbarMessage = 'Please enter a password of at least 7 characters.'
+        this.snackbar = true;
+      } else {
+        await auth.signUpUser({
+          email: this.email,
+          username: this.username,
+          password: this.newPassword,
+          });
+        console.log(auth.errorMessage);
+        if (auth.error) {
+          this.snackbarMessage = auth.error;
+          this.snackbar = true;
+        } else if (auth.username) {
+          this.snackbarMessage = 'Click on your username to create new events.'
+          this.snackbar = true;
+          this.$router.push({name: 'home'});
+        }
+      }
+    }
+
+    private goBack() {
+      this.$router.push({name: 'home'});
     }
   }
 </script>
 
 <style lang="scss" scoped>
   .signup {
-    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    background-color: #ffc320;
   }
-
 </style>

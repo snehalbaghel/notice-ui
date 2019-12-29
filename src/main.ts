@@ -24,7 +24,7 @@ Vue.filter('date', (value: string) => {
   const date: Date = new Date(Date.parse(value));
 
   return date.getDate().toString() + ' ' +
-            monthNames[date.getMonth() - 1] + ' ' +
+            monthNames[date.getMonth()] + ' ' +
             date.getFullYear();
 });
 
@@ -33,13 +33,13 @@ Vue.filter('capitalize', (value: string) => {
     return '';
   }
 
-  Vue.filter('time', (value: string) => {
+  Vue.filter('time', (dateISO: string) => {
 
-  const date = new Date(Date.parse(value));
+  const date = new Date(Date.parse(dateISO));
 
   let hours = date.getHours();
   let minutes: string | number = date.getMinutes();
-  let ampm = hours >= 12 ? 'PM' : 'AM';
+  const ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
   minutes = minutes < 10 ? '0' + minutes : minutes;
