@@ -100,7 +100,7 @@
     }
 
     private signup() {
-      // TODO
+      this.$router.push({name:'signup'});
     }
 
     private logout() {
