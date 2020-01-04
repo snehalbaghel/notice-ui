@@ -267,7 +267,6 @@
     }
 
     get formattedDate() {
-
       return this.date ? (this.date.getDate() + ' ' + this.date.getMonth() +
         ' ' + this.date.getFullYear()) : '';
     }

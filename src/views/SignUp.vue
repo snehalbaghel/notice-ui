@@ -11,9 +11,9 @@
         <v-subheader class="px-2">Let's get started</v-subheader>
 
         <v-form>
-          <v-text-field class="px-1" value="" v-model="email" label="Email" outlined required/>
-          <v-text-field class="px-1" value="" v-model="username" label="Username" outlined required/>
-          <v-text-field class="px-1" :type="showPass ? 'text' : 'password'" 
+          <v-text-field :error="error.email" class="px-1" value="" v-model="email" label="Email" outlined required/>
+          <v-text-field :error="error.username" class="px-1" value="" v-model="username" label="Username" outlined required/>
+          <v-text-field :error="error.password" class="px-1" :type="showPass ? 'text' : 'password'" 
             :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="showPass = !showPass" required autocomplete="new-password"
             v-model="newPassword" value="" label="Password" outlined/>
@@ -55,29 +55,41 @@
     private showPass = false;
     private snackbar = false;
     private snackbarMessage = '';
+    private error = {
+      email: false,
+      username: false,
+      password: false
+    }
 
     private async signup() {
+
+      this.error.email = false;
+      this.error.username = false;
+      this.error.password = false;
+
       if (!this.email) {
-        this.snackbarMessage = 'Please enter email.'
+        this.snackbarMessage = 'Please enter email.';
         this.snackbar = true;
+        this.error.email = true;
       } else if (!this.username) {
-        this.snackbarMessage = 'Please enter username.'
+        this.snackbarMessage = 'Please enter username.';
         this.snackbar = true;
+        this.error.username = true;
       } else if (!this.newPassword && this.newPassword.length < 7) {
-        this.snackbarMessage = 'Please enter a password of at least 7 characters.'
+        this.snackbarMessage = 'Please enter a password of at least 7 characters.';
         this.snackbar = true;
+        this.error.password = true;
       } else {
         await auth.signUpUser({
           email: this.email,
           username: this.username,
           password: this.newPassword,
           });
-        console.log(auth.errorMessage);
         if (auth.error) {
           this.snackbarMessage = auth.error;
           this.snackbar = true;
         } else if (auth.username) {
-          this.snackbarMessage = 'Click on your username to create new events.'
+          this.snackbarMessage = 'Click on your username to create new events.';
           this.snackbar = true;
           this.$router.push({name: 'home'});
         }
