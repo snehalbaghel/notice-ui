@@ -7,7 +7,7 @@
       </v-card>
         </v-col>
         <v-col cols="12" md="7">
-          <EventInfo :event="event"/>
+          <EventInfo :id="id" />
         </v-col>
       </v-row>
     </v-container>
@@ -18,6 +18,8 @@
   import EventStore from '../../store/modules/event';
   import ApprovalStatus from './ApprovalStatus.vue';
   import EventInfo from './EventInfo.vue';
+  import Auth from '../../store/modules/auth';
+  import { Event } from '../../store/models';
 
   @Component({
     components: {
@@ -28,14 +30,6 @@
   export default class EventSummary extends Vue {
 
     @Prop() private id: string | undefined;
-
-    get event() {
-      const events = EventStore.savedEvents;
-      if (events) {
-        return events.filter((event) => event.id === this.id)[0];
-      }
-
-    }
 
   }
 

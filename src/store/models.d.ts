@@ -68,3 +68,12 @@ export interface SignUpPayload {
   password: string;
   username: string;
 }
+
+export interface PendingRequestResponse {
+  request_id: string,
+  title: string,
+  username: string,
+  event_date: string,
+  request_date: string,
+  current_status: string,
+}

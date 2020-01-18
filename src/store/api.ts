@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Event, AuthCredentials, AuthResponse, PostResponse,
-  Tag, UploadResponse, RequestHistoryResponse, SignUpPayload } from './models';
+  Tag, UploadResponse, RequestHistoryResponse, SignUpPayload, PendingRequestResponse } from './models';
 
 export const enoticeApi = axios.create({
   baseURL: 'http://127.0.0.1:5000',
@@ -68,12 +68,20 @@ export async function postRequest(id: string): Promise<PostResponse> {
   return response.data;
 }
 
-export async function fetchPendingEvents(): Promise<any> {
+export async function fetchPendingRequests(): Promise<[PendingRequestResponse]> {
   const response = await enoticeApi.get('/event/pending');
-  // console.log(response);
+  return response.data;
 }
 
 export async function postNewUser(payload: SignUpPayload): Promise<AuthResponse> {
   const response = await enoticeApi.post('/user', payload);
   return response.data;
 }
+
+export async function fetchEvent(id: string): Promise<Event> {
+  const response = await enoticeApi.get(`/event/${id}`);
+  return response.data;
+}
+// export async function postReview(): Promise<> {
+
+// }

@@ -32,22 +32,27 @@ Vue.filter('capitalize', (value: string) => {
   if (!value) {
     return '';
   }
-
-  Vue.filter('time', (dateISO: string) => {
-
-  const date = new Date(Date.parse(dateISO));
-
-  let hours = date.getHours();
-  let minutes: string | number = date.getMinutes();
-  const ampm = hours >= 12 ? 'PM' : 'AM';
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? '0' + minutes : minutes;
-  return hours + ':' + minutes + ', ' + ampm;
-});
-
   return value.charAt(0).toUpperCase() + value.slice(1);
 });
+
+Vue.filter('time', (dateISO: string) => {
+  if (dateISO && dateISO !== '') {
+
+    const date = new Date(Date.parse(dateISO));
+
+    let hours = date.getHours();
+    let minutes: string | number = date.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    return hours + ':' + minutes + ', ' + ampm;
+  }
+
+  return '';
+});
+
+
 
 const  accessToken  =  localStorage.getItem('access_token');
 const user = localStorage.getItem('user');

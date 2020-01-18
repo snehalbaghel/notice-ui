@@ -51,6 +51,14 @@ export default new Router({
           props: { content_slot: true },
         },
         {
+          path: '/requests',
+          name: 'requests',
+          components: {
+            content_slot: () => import('./components/content/admin/EventRequests.vue'),
+            nav_slot: () => import('./components/nav/SavedEvents.vue'),
+          },
+        },
+        {
           path: '*',
           redirect: 'home',
         },

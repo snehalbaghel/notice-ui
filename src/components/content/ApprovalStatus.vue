@@ -66,7 +66,7 @@
     private snackbarMessage: string = "";
 
     mounted() {
-      return RequestStore.fetchHistory(this.id);
+      RequestStore.fetchHistory(this.id);
     }
 
     get requestHistory() {

@@ -53,7 +53,7 @@
     <v-btn class="close-button" icon @click="overlay = false">
         <v-icon>mdi-close</v-icon>
     </v-btn>
-    <v-img class="poster" src="http://127.0.0.1:5000/event/image/88131316-be7e-4446-91da-0cb0b4f8536f">
+    <v-img src="http://127.0.0.1:5000/event/image/88131316-be7e-4446-91da-0cb0b4f8536f">
     </v-img>
   </v-overlay>
 
@@ -63,17 +63,45 @@
 
 <script lang="ts">
   import { Vue, Component, Prop } from 'vue-property-decorator';
-import { Event } from '../../store/models';
-  
+  import { Event } from '../../store/models';
+  import EventStore from '../../store/modules/event';
+
   @Component
   export default class EventInfo extends Vue {
 
-    @Prop() private event: Event | undefined;
+    @Prop() private id: string | null = null;
     private overlay: boolean = false;
+
+    private dummyEvent: Event = {
+      title: 'Loading..',
+      subtitle: 'Subtitle..',
+      venue: 'Venue..',
+      description: 'Description..',
+      time: 'Time..',
+      link: 'Link..',
+      id: '',
+    }
     
-    // cool() {
-    //    this.event!.
-    // }
+    get event() {
+      if (this.id && this.id !== '') {
+        const events = EventStore.savedEvents;
+        let event = null;
+        if (events) {
+          event = events.filter((event) => event.id === this.id)[0];
+        }
+
+        if (!event) {
+          event = EventStore.events[this.id]
+        }
+
+        if (!event) {
+          EventStore.fetchEvent(this.id)
+        }
+
+        return event
+      }
+      return this.dummyEvent;
+    }
   
   }
 </script>
