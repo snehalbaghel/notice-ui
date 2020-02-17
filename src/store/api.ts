@@ -79,7 +79,7 @@ export async function postNewUser(payload: SignUpPayload): Promise<AuthResponse>
 }
 
 export async function fetchEvent(id: string): Promise<Event> {
-  const response = await enoticeApi.get(`/event/${id}`);
+  const response = await enoticeApi.get('/event/get/' + id );
   return response.data;
 }
 // export async function postReview(): Promise<> {

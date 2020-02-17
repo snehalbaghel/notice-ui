@@ -73,7 +73,7 @@
             <v-combobox v-model="selectedTags" :items="tags" chips
             label="Add Tags" placeholder="Like debating, coding.."
             multiple prepend-icon="mdi-tag-outline">
-            <template v-slot:selection="{ attrs, item, select }">
+            <template v-slot:selection="{ attrs, item }">
               <v-chip class="chip" v-bind="attrs" close @click:close="removeTag(item)" label>
                 <strong>{{ item }}</strong>&nbsp;
               </v-chip>

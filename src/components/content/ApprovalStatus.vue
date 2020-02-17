@@ -75,7 +75,9 @@
 
     @Watch('id')
     onIdChanged(id: string, oldId: string) {
-      RequestStore.fetchHistory(id);
+      if (id !== oldId && id !== '') {
+        RequestStore.fetchHistory(id);
+      }
     }
 
     private async sendRequest() {

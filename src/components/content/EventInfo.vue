@@ -3,8 +3,8 @@
   <v-container>
     <v-row>
       <v-col class="pr-0" cols="12" sm="6" @click="overlay = !overlay">
-            <v-img class="poster" src="http://127.0.0.1:5000/event/image/88131316-be7e-4446-91da-0cb0b4f8536f">
-            </v-img>
+        <v-img class="poster" src="http://127.0.0.1:5000/event/image/88131316-be7e-4446-91da-0cb0b4f8536f">
+          </v-img>
       </v-col>
       <v-col cols="12" sm="6">
         <v-row class="display-1 pa-3">
@@ -62,48 +62,56 @@
 </template>
 
 <script lang="ts">
-  import { Vue, Component, Prop } from 'vue-property-decorator';
+  import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
   import { Event } from '../../store/models';
   import EventStore from '../../store/modules/event';
 
   @Component
   export default class EventInfo extends Vue {
 
-    @Prop() private id: string | null = null;
+    @Prop() private id: string | undefined;
     private overlay: boolean = false;
-
-    private dummyEvent: Event = {
+        private dummyEvent: Event = {
       title: 'Loading..',
       subtitle: 'Subtitle..',
       venue: 'Venue..',
       description: 'Description..',
       time: 'Time..',
       link: 'Link..',
-      id: '',
+      id: '',};
+
+
+    mounted() {
+      if (this.id && this.id !== '') {
+        EventStore.fetchEvent(this.id);
+      }
     }
     
+    @Watch('id') 
+    async onIdChanged(newId: string, old: string | null) {
+      if (newId !== old) {
+        EventStore.fetchEvent(newId);
+      }
+    }
+
     get event() {
       if (this.id && this.id !== '') {
         const events = EventStore.savedEvents;
-        let event = null;
+        let found: Event | null = null;
+
         if (events) {
-          event = events.filter((event) => event.id === this.id)[0];
+          found = events.filter((event) => event.id === this.id)[0];
         }
 
-        if (!event) {
-          event = EventStore.events[this.id]
+        if (!found) {
+          found = EventStore.events.filter((event) => event.id === this.id)[0];
         }
 
-        if (!event) {
-          EventStore.fetchEvent(this.id)
-        }
-
-        return event
-      }
-      return this.dummyEvent;
+    return found || this.dummyEvent;
     }
   
   }
+}
 </script>
 
 <style lang="scss" scoped>

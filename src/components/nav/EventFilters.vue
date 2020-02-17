@@ -1,5 +1,5 @@
 <template>
-  <v-list dense class="grey lighten-4 fill-height">
+  <v-list dense class="fill-height">
 			<v-list-item class="headline">Filters</v-list-item>
 			<div class="filter-name">Calendar</div>
 			<v-list-item>

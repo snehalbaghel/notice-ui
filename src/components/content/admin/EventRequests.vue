@@ -36,12 +36,9 @@
     </div>
     <v-bottom-sheet v-model="previewDialog" >
       <v-sheet>
-        <!-- <EventSummary :id="previewId"/> -->
+        <EventInfo :id="previewId" /> 
       </v-sheet>
     </v-bottom-sheet>
-    <!-- <template v-for="item in items"> -->
-      <!-- <EventSummary :key="request.event_id" :id="request.event_id" v-for="request in selected"/> -->
-    <!-- </template> -->
   </v-container>
 </template>
 
@@ -50,10 +47,12 @@
   import EventSummary from '../EventSummary.vue';
   import RequestStore from '../../../store/modules/request';
   import request from '../../../store/modules/request';
+  import EventInfo from '../EventInfo.vue';
 
   @Component({
     components: {
-      EventSummary
+      EventSummary,
+      EventInfo
     }
   })
   export default class EventRequest extends Vue {

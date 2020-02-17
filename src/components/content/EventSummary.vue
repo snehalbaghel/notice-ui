@@ -1,13 +1,13 @@
 <template>
     <v-container >
       <v-row>
-        <v-col class="flex-shrink-1" >
-      <v-card class="status-card">
-        <ApprovalStatus :id="id"/>
-      </v-card>
-        </v-col>
         <v-col cols="12" md="7">
           <EventInfo :id="id" />
+        </v-col>
+        <v-col class="flex-shrink-1" >
+          <v-card class="status-card">
+            <ApprovalStatus :id="id"/>
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
