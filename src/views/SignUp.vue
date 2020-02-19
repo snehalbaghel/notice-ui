@@ -59,7 +59,7 @@
       email: false,
       username: false,
       password: false
-    }
+    };
 
     private async signup() {
 

@@ -42,10 +42,6 @@
           </div>
         </v-row>
       </v-col>
-      <!-- <v-col>
-      <span class="pa-3 display-3">Interface 2019</span>
-      </v-col> -->
-
     </v-row>
   </v-container>
 

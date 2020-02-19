@@ -24,11 +24,12 @@
         <div class="form-grid">
           <div class="review-field">
               <h1 class="display-1">Admin Panel</h1>
-              <v-textarea class="review-field" pa-0 ma-0 outlined label="Review Message" name="name" ></v-textarea>
-
+              <v-textarea v-model="review" class="review-field" pa-0 ma-0 outlined label="Review Message" name="name" />
           </div>
-          <v-btn class="review-btn" color="warning">{{ multipleSelected ? 'Review All' : 'Review' }}</v-btn>
-          <v-btn class="approve-btn" color="success">
+          <v-btn @click="onReviewClick()" :disabled="(selected.length === 0 ? true : false) || review === ''" 
+            class="review-btn" color="warning">{{ multipleSelected ? 'Review All' : 'Review' }}</v-btn>
+          <v-btn @click="onApproveClick()" :disabled="(selected.length === 0 ? true : false) || review !== ''"
+            class="approve-btn" color="success">
               <v-icon>mdi-check</v-icon>
               {{ multipleSelected ? 'Approve All' : 'Approve' }}
           </v-btn>
@@ -39,6 +40,19 @@
         <EventInfo :id="previewId" /> 
       </v-sheet>
     </v-bottom-sheet>
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="2000"
+    >
+      {{ snackbarMessage }}
+      <v-btn
+        color="blue"
+        text
+        @click="snackbar = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -48,6 +62,8 @@
   import RequestStore from '../../../store/modules/request';
   import request from '../../../store/modules/request';
   import EventInfo from '../EventInfo.vue';
+  import { PendingRequestResponse, ReviewPayloadItem, ReviewResponseItem } from '../../../store/models';
+  import { postReview } from '../../../store/api'
 
   @Component({
     components: {
@@ -61,7 +77,7 @@
       RequestStore.fetchPendingRequests();
     }
 
-    private selected = [];
+    private selected: PendingRequestResponse[] = [];
     private search = '';
     private headers = [
           { text: 'Title', align: 'left', value: 'title' },
@@ -72,11 +88,62 @@
         ];
     private previewId = null;
     private previewDialog = false;
+    private review = '';
+    private snackbar = false;
+    private snackbarMessage = '';
 
-    previewSummary(item: any) {
-      // console.log(item);
+    private previewSummary(item: any) {
       this.previewId = item.event_id;
       this.previewDialog = true;
+    }
+
+    async onReviewClick() {
+      const payload: ReviewPayloadItem[] = this.selected.map(request => ({
+        request_id: request.request_id,
+        status: 'review',
+        review_msg: this.review,
+      }));
+      const response = await postReview(payload);
+      RequestStore.fetchPendingRequests();
+
+      this.displayResponse(response);
+      this.reset();
+
+    }
+
+    async onApproveClick() {
+      const payload: ReviewPayloadItem[] = this.selected.map(request => ({
+        request_id: request.request_id,
+        status: 'approved',
+      }));
+
+      const response = await postReview(payload);
+      RequestStore.fetchPendingRequests();
+
+      this.displayResponse(response);
+      this.reset();
+
+    }
+
+    private displayResponse(response: ReviewResponseItem[]) {
+      let failed = 0;
+      let success = 0;
+
+      response.forEach((reviewResp) => {
+        if (reviewResp.status === 'success') {
+          success++;
+        } else {
+          failed++;
+        }
+      })
+
+      this.snackbarMessage = `${success} succeeded, ${failed} failed.`;
+      this.snackbar =true;
+    }
+
+    private reset() {
+      this.review = '';
+      this.selected = [];
     }
 
     get pendingRequests() {
@@ -118,8 +185,6 @@
   .approve-btn {
     justify-self: start;
     grid-column: 2 / 4;
-    // justify-self: end;
-    // grid-column: 1 / 1;
   }
 
   .review-field {
@@ -128,8 +193,6 @@
     position: relative;
     top: 16px;
     align-self: end;
-    // grid-row: 
-    // grid-column: 1 / 2;
   }
 
   .review-btn {
@@ -137,10 +200,7 @@
     grid-column: 1 / 2  ;
     grid-row: 2 / 2;
     align-self: start;
-    // align-self: center;
-    // position: relative;
-    // bottom: 16px;
-    // align-self: center;
+    min-width: 94px;
   }
 
 </style>

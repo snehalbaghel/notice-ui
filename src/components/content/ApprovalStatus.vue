@@ -74,7 +74,7 @@
     }
 
     @Watch('id')
-    onIdChanged(id: string, oldId: string) {
+    private onIdChanged(id: string, oldId: string) {
       if (id !== oldId && id !== '') {
         RequestStore.fetchHistory(id);
       }

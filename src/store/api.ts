@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Event, AuthCredentials, AuthResponse, PostResponse,
-  Tag, UploadResponse, RequestHistoryResponse, SignUpPayload, PendingRequestResponse } from './models';
+  Tag, UploadResponse, RequestHistoryResponse, SignUpPayload, PendingRequestResponse, ReviewPayloadItem, ReviewResponseItem } from './models';
 
 export const enoticeApi = axios.create({
   baseURL: 'http://127.0.0.1:5000',
@@ -82,6 +82,8 @@ export async function fetchEvent(id: string): Promise<Event> {
   const response = await enoticeApi.get('/event/get/' + id );
   return response.data;
 }
-// export async function postReview(): Promise<> {
 
-// }
+export async function postReview(payload: ReviewPayloadItem[]): Promise<ReviewResponseItem[]> {
+  const response = await enoticeApi.post('/request/review', payload);
+  return response.data;
+}

@@ -76,4 +76,17 @@ export interface PendingRequestResponse {
   event_date: string,
   request_date: string,
   current_status: string,
+  event_id: string,
+}
+
+export interface ReviewPayloadItem {
+  request_id: string,
+  status: 'approved' | 'review',
+  review_msg?: string,
+}
+
+export interface ReviewResponseItem {
+  event_id: string,
+  status: string,
+  messages: string,
 }
